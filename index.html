@@ -238,7 +238,7 @@
 
   /* INNOVACION */
   .innovacion{background:var(--paper-dim);}
-  .inno-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  .inno-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
   .inno-card{
     background:var(--paper);border-radius:3px;padding:30px 26px;border:1px solid var(--line);border-top:2px solid var(--blueprint);
     transition:transform .25s ease,box-shadow .25s;
@@ -417,10 +417,9 @@
         <a href="#contacto">Contacto</a>
       </div>
       <div class="nav-actions">
-        <!-- Portal de Proyectos: habilitado apuntando al prototipo (datos de ejemplo, login de
-             maqueta). Cuando exista el backend real con dominio propio (portal.stands360.com),
-             cambiar este href por el definitivo. -->
-        <a href="https://claude.ai/code/artifact/b2fbd2ef-9dcf-4477-81e6-d8e1a786e582" class="portal-link" target="_blank" rel="noopener">Portal de Proyectos</a>
+        <!-- Portal de Proyectos — oculto (septiembre 2026): apuntaba al prototipo (datos de
+             ejemplo, login de maqueta) y no queremos tenerlo habilitado en el dominio real.
+             Reactivar cuando exista el backend real con dominio propio (portal.stands360.com). -->
         <a href="#contacto" class="cta-btn">Empecemos tu proyecto</a>
       </div>
     </nav>
@@ -458,7 +457,7 @@
           <div class="cp-rows">
             <div class="cp-row"><span>Responsable</span><strong>1 Project Manager</strong></div>
             <div class="cp-row"><span>Próxima acción</span><strong>Aprobar renders finales</strong></div>
-            <div class="cp-row"><span>Portal de Proyectos</span><strong>Actualizado hoy</strong></div>
+            <div class="cp-row"><span>Reporte de avance</span><strong>Actualizado hoy</strong></div>
           </div>
         </div>
       </div>
@@ -573,11 +572,14 @@
         <p>Indicadores de cada proyecto — avance, etapa, alertas — sin tener que pedir un reporte.</p>
         <span class="tag-status">En operación interna</span>
       </div>
+      <!-- Portal de Proyectos — oculto (septiembre 2026), mismo motivo que el link del nav:
+           no queremos mostrarlo como habilitado en el dominio real todavía.
       <div class="inno-card reveal-item">
         <h3>Portal de Proyectos</h3>
         <p>Aprobación de renders, contratos y documentos desde un solo lugar — cada cliente ve su proyecto, sin cadenas de correos.</p>
         <span class="tag-status">En desarrollo</span>
       </div>
+      -->
       <div class="inno-card reveal-item">
         <h3>Asistente virtual 24/7</h3>
         <p>Resuelve dudas iniciales y levanta los datos de tu proyecto para que el equipo te contacte ya con contexto.</p>
