@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<title>Documento · STANDS 360</title>
+<link rel="stylesheet" href="/portal/s.css"></head>
+<body class="docwrap" style="padding-inline:12px"><div id="app"><p class="hint" style="text-align:center">Cargando documento…</p></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="/portal/shared.js"></script>
+<script>
+(async function(){
+  const {sb,esc,DOCS,$}=S360, app=$('#app');
+  const q=new URLSearchParams(location.search), id=q.get('d');
+  const msg=(t)=>{app.innerHTML=`<div class="sheet" style="text-align:center"><p>${t}</p><p><a href="/portal/">Ir al portal de clientes</a></p></div>`};
+  const {data:s}=await sb.auth.getSession();
+  if(!s.session) return msg('Inicia sesión en tu portal para ver este documento.');
+  if(!/^[0-9a-f-]{36}$/i.test(id||'')) return msg('Documento no encontrado.');
+  const {data:d}=await sb.from('documentos').select('*').eq('id',id).maybeSingle();
+  if(!d) return msg('No encontramos este documento o no tienes acceso.');
+  const {data:p}=await sb.from('proyectos').select('*').eq('id',d.proyecto_id).maybeSingle();
+  const def=DOCS[d.kind];
+  if(!p||!def) return msg('Este documento no se puede mostrar aquí.');
+  document.title=def.titulo+' - '+p.nombre;
+  app.innerHTML=`<div class="dtool noprint"><a class="btn ghost sm" href="javascript:history.length>1?history.back():location.href='/portal/'">← Volver</a><button class="btn sm" onclick="window.print()">Imprimir o guardar como PDF</button></div>`+def.render(p);
+})();
+</script></body></html>
