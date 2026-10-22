@@ -418,6 +418,28 @@ html[data-brand=ac] .next li::before{color:#FF8A5C}
 .work figcaption{position:absolute;inset:auto 0 0 0;padding:28px 12px 11px;background:linear-gradient(180deg,transparent,rgba(10,18,40,.85));color:#fff}
 .work figcaption b{display:block;font:750 17px var(--disp);font-stretch:88%;letter-spacing:-.01em}
 .work figcaption span{font:500 10.5px var(--mono);letter-spacing:.08em;text-transform:uppercase;opacity:.8}
+.stages{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+@media(max-width:820px){.stages{grid-template-columns:1fr}}
+.stg{background:var(--card);border:1px solid var(--line);border-radius:6px;overflow:hidden;min-width:0;display:flex;flex-direction:column}
+.stg figure{position:relative;aspect-ratio:16/10;background:#1A2A52;overflow:hidden;margin:0}
+.stg img{width:100%;height:100%;object-fit:cover;transition:transform 1s}
+.stg:hover img{transform:scale(1.04)}
+.stg .st{position:absolute;left:10px;top:10px;font:650 10.5px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:#fff;background:rgba(14,26,51,.66);backdrop-filter:blur(6px);padding:6px 9px;border-radius:3px}
+.stg .bd{padding:14px 14px 16px;display:grid;gap:8px}
+.stg .bd b{font:750 17px var(--disp);font-stretch:88%;letter-spacing:-.01em;text-wrap:balance}
+.stg .bd small{font:500 11px var(--mono);color:var(--mut);letter-spacing:.04em}
+.stg .prog{height:6px;border-radius:99px;background:color-mix(in srgb,var(--acc) 14%,transparent);overflow:hidden}
+.stg .prog i{display:block;height:6px;border-radius:inherit;background:var(--acc)}
+.stg ul{list-style:none;margin:2px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:6px}
+.stg li{display:inline-flex;align-items:center;gap:5px;font:600 12px var(--body,inherit);padding:5px 9px;border-radius:99px;border:1px solid var(--line);color:var(--mut)}
+.stg li i{width:7px;height:7px;border-radius:50%;border:1.5px solid currentColor}
+.stg li.s2{color:var(--acc);border-color:color-mix(in srgb,var(--acc) 35%,transparent)}
+.stg li.s1{color:var(--ink,#0E1222);border-color:var(--acc);background:color-mix(in srgb,var(--acc) 10%,transparent)}
+.stg li.s1 i{background:var(--acc);border-color:var(--acc);animation:pul 1.6s infinite}
+@keyframes pul{50%{opacity:.35}}
+.priv{display:flex;gap:10px;align-items:flex-start;margin:12px 0 6px;padding:13px 14px;border:1px dashed color-mix(in srgb,var(--acc) 45%,transparent);border-radius:6px;font-size:14px;color:var(--mut)}
+.priv svg{flex:none;color:var(--acc);margin-top:1px}
+.priv b{color:var(--ink,#0E1222)}
 .team{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin-top:6px}
 .team div{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:12px}
 .team b{display:block;font:700 15px var(--disp);font-stretch:90%}
@@ -602,7 +624,7 @@ var BR={
     next:[['Te escribimos por WhatsApp','Para confirmar y enviarte el enlace de la llamada.'],['Revisamos tu negocio','Página, redes y Google Maps, antes de hablar.'],['Te mostramos una demo de tu giro','Y un plan claro de por dónde empezar.']]
   },
   s360:{
-    name:'STANDS 360',tag:'Diseño y dirección de stands',logo:ST+'bio/logo-s360.jpg',mono:'S360',wa:'525531111441',
+    name:'STANDS 360',tag:'Diseño y dirección de stands',logo:ST+'bio/logo-s360.jpg?v=2',mono:'S360',wa:'525531111441',
     host:'Project Manager STANDS 360',hostRole:'Diseño, fabricación y montaje',
     ey:'Agenda · Project Manager',h:'Agenda tu reunión de proyecto',steps:['Reunión','Día y hora','Brief'],
     svcIcons:['phone','cube','pin','ruler'],
@@ -630,7 +652,7 @@ var BR={
   }
 };
 var C=BR[THEME];
-var AGENDAS=[['acmarketing','AC Marketing','Asesoría de webs, apps y redes',ST+'bio/logo-ac2.jpg','AC'],['stands360','STANDS 360','Stands y eventos corporativos',ST+'bio/logo-s360.jpg','S360'],['isra','Amín Castelán','Ventas, negocio y eventos',ST+'bio/amin-hd.jpg','AC']];
+var AGENDAS=[['acmarketing','AC Marketing','Asesoría de webs, apps y redes',ST+'bio/logo-ac2.jpg','AC'],['stands360','STANDS 360','Stands y eventos corporativos',ST+'bio/logo-s360.jpg?v=2','S360'],['isra','Amín Castelán','Ventas, negocio y eventos',ST+'bio/amin-hd.jpg','AC']];
 
 /* ================= STATE ================= */
 var S={neg:null,servs:[],busy:[],step:1,svc:null,day:null,slot:null,brief:{},form:{nombre:'',tel:'',email:'',nota:''},res:null,days:[],flash:null,sending:false};
@@ -747,9 +769,9 @@ function renderHero(){
       '</div></div></div>';
   }else if(THEME==='s360'){
     html='<div class="s-hero"><div class="wrap"><div class="mosaic">'+
-      '<figure>'+img(PF('siemens-assembly-01'),'Stand Siemens Assembly','',null,'fetchpriority="high"')+'<figcaption>Siemens · Assembly</figcaption></figure>'+
-      '<figure>'+img(PF('khs-expo-pack-01'),'Stand KHS en Expo Pack')+'<figcaption>KHS · Expo Pack</figcaption></figure>'+
-      '<figure>'+img(PF('gm-fin-de-ano-01'),'Evento GM fin de año')+'<figcaption>GM · Evento</figcaption></figure>'+
+      '<figure>'+img(UN('1586868538513-51335a0c5337',900,900),'Diseño de un stand en render','',null,'fetchpriority="high"')+'<figcaption>01 · Planeando</figcaption></figure>'+
+      '<figure>'+img(UN('1687422810663-c316494f725a',600,420),'Fabricación en taller')+'<figcaption>02 · Armando</figcaption></figure>'+
+      '<figure>'+img(UN('1766802981817-776406db6807',600,420),'Stand listo en la expo')+'<figcaption>03 · Entregando</figcaption></figure>'+
       '</div><div class="s-head"><div class="ey">STANDS 360 · Expos en todo México</div>'+
       '<h1 class="s-h1">Tu stand, de render <em>a montaje.</em></h1>'+
       '<p class="s-sub">Agenda una reunión con tu Project Manager. Diseñamos, fabricamos y montamos; tú solo llegas a vender.</p>'+
@@ -992,9 +1014,13 @@ function renderTrust(){
       '<a class="prod" href="https://acmarketing.com.mx/clientes/" target="_blank" rel="noopener"><span class="go">'+ic('ext','s18')+'</span><span class="ic">'+ic('web')+'</span><div><b>Páginas web</b><p>Rápidas, claras y listas para Google.</p></div></a>'+
       '</div>';
   }else if(THEME==='s360'){
-    var W=[['siemens-assembly-02','Siemens','Assembly · Stand'],['siemens-fin-de-ano-01','Siemens','Evento fin de año'],['gm-fin-de-ano-02','GM','Evento corporativo'],['khs-expo-pack-02','KHS','Expo Pack'],['dimanor-expo-asfalto-01','DIMANOR','Expo Asfalto'],['sanmartin-expo-pack-01','San Martín','Expo Pack']];
-    h='<div class="sec-h"><div class="ey">Proyectos reales</div><h2>Marcas que ya montaron con nosotros.</h2><p>Del render al último tornillo: un solo equipo responsable.</p></div><div class="work">'+
-      W.map(function(w,i){return '<figure>'+img(PF(w[0],i>0),'Proyecto '+w[1]+' – '+w[2],'',null,'loading="lazy"')+'<figcaption><b>'+w[1]+'</b><span>'+w[2]+'</span></figcaption></figure>'}).join('')+
+    var W=[['1542621334-a254cf47733d','01 · Planeando','Stand 6×3 m · Expo industrial','CDMX · marzo 2027',28,[['Brief',2],['Render v2 de 3',1],['Planos',0]]],
+      ['1683115100702-af818681184d','02 · Armando','Isla 9×6 m · Expo de alimentos','Guadalajara · febrero 2027',64,[['Planos',2],['Fabricación',1],['Montaje',0]]],
+      ['1766802981817-776406db6807','03 · Entregando','Evento corporativo · 600 personas','Querétaro · diciembre 2026',92,[['Montaje',2],['Prueba de luces',2],['Entrega',1]]]];
+    h='<div class="sec-h"><div class="ey">Proyectos en proceso</div><h2>Así avanza tu stand, paso a paso.</h2><p>Planeamos, armamos y entregamos con un solo equipo responsable.</p></div><div class="stages">'+
+      W.map(function(w){return '<article class="stg"><figure>'+img(UN(w[0],700,520),'','',null,'loading="lazy"')+'<span class="st">'+w[1]+'</span></figure><div class="bd"><b>'+w[2]+'</b><small>'+w[3]+'</small><div class="prog" role="img" aria-label="Avance '+w[4]+'%"><i style="width:'+w[4]+'%"></i></div><ul>'+
+        w[5].map(function(t){return '<li class="s'+t[1]+'">'+(t[1]===2?ic('check','s16'):'<i></i>')+t[0]+'</li>'}).join('')+'</ul></div></article>'}).join('')+
+      '</div><p class="priv">'+ic('shield','s18')+'<span>Los proyectos que ya entregamos te los mostramos <b>en privado, en tu reunión</b>. Cuidamos la confidencialidad de cada marca.</span></p>'+
       '</div><div class="team"><div><b>Porfirio</b><span>Desarrollo · medidas</span></div><div><b>Dari</b><span>Planos</span></div><div><b>Erick</b><span>Fabricación</span></div></div>';
   }else{
     h='<div class="bio"><div><div class="sec-h"><div class="ey">Quién soy</div><h2>Dirijo marcas, ventas y eventos.</h2></div>'+
