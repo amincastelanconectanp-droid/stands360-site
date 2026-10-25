@@ -16,10 +16,9 @@
 <script>
 /* ---------- slug + brand bootstrap (runs before paint) ---------- */
 (function(){
-  var KNOWN={acmarketing:1,stands360:1,isra:1};
+  var KNOWN={stands360:1};
   function pick(){
     var q=null;try{q=new URLSearchParams(location.search).get('n')}catch(e){}
-    if(q)return q.trim().toLowerCase();
     var d=document.documentElement.getAttribute('data-default-slug');
     if(d)return d.trim().toLowerCase();
     var m=location.pathname.match(/\/agenda\/([^\/?#]+)/i);
@@ -639,7 +638,7 @@ var BR={
     next:[['Tu Project Manager confirma','Te escribe por WhatsApp con el enlace o la dirección.'],['Prepara tu material','Logo, manual de la expo y medidas del espacio.'],['Definimos el brief','Con eso arrancan tus 3 versiones de render.']]
   },
   isra:{
-    name:'Amín Castelán',tag:'Ventas · Negocio · Eventos',logo:ST+'bio/amin-hd.jpg',mono:'AC',wa:'525519718494',
+    name:'Amín Castelán',tag:'Ventas · Negocio · Eventos',logo:ST+'bio/amin-hd.jpg',mono:'AC',wa:'525531111441',
     host:'Amín Castelán',hostRole:'Te respondo yo',
     ey:'Agenda una llamada',h:'Elige un espacio conmigo',steps:['Tema','Día y hora','Tus datos'],
     svcIcons:['coffee','trend','spark','mic'],
@@ -1039,7 +1038,7 @@ function renderTrust(){
 }
 function renderFoot(){
   var w=C.wa;
-  document.getElementById('foot').innerHTML='<h3>Otras agendas</h3><div class="agendas">'+AGENDAS.filter(function(a){return a[0]!==SLUG}).map(function(a){return '<a class="ag" href="?n='+a[0]+'">'+img(a[3],'','',a[4])+'<span class="tx"><b>'+a[1]+'</b><span>'+a[2]+'</span></span>'+ic('arrow','s18')+'</a>'}).join('')+'<a class="ag" href="https://wa.me/'+w+'?text='+encodeURIComponent(C.waHello+', quiero agendar una cita.')+'" target="_blank" rel="noopener"><span class="wai">'+ic('wa')+'</span><span class="tx"><b>¿Prefieres escribir?</b><span>WhatsApp · respuesta rápida</span></span>'+ic('ext','s18')+'</a></div>'+
+  document.getElementById('foot').innerHTML='<h3>¿Prefieres escribir?</h3><div class="agendas">'+[].map(function(a){return '<a class="ag" href="?n='+a[0]+'">'+img(a[3],'','',a[4])+'<span class="tx"><b>'+a[1]+'</b><span>'+a[2]+'</span></span>'+ic('arrow','s18')+'</a>'}).join('')+'<a class="ag" href="https://wa.me/'+w+'?text='+encodeURIComponent(C.waHello+', quiero agendar una cita.')+'" target="_blank" rel="noopener"><span class="wai">'+ic('wa')+'</span><span class="tx"><b>Escríbenos por WhatsApp</b><span>Respuesta rápida</span></span>'+ic('ext','s18')+'</a></div>'+
     '<div class="fb"><span>© '+new Date().getFullYear()+' '+esc(C.name)+(THEME==='s360'?' · AXIOM GROUP S.A.S.':'')+' · Tulancingo, Hgo.</span><span style="display:flex;gap:16px;flex-wrap:wrap"><a href="https://wa.me/'+w+'" target="_blank" rel="noopener" style="display:inline-flex;gap:6px;align-items:center">'+ic('wa','s16')+'WhatsApp</a>'+
     (THEME==='ac'?'<a href="https://instagram.com/acmarketing_official" target="_blank" rel="noopener">Instagram</a><a href="https://acmarketing.com.mx" target="_blank" rel="noopener">acmarketing.com.mx</a>':THEME==='s360'?'<a href="https://instagram.com/stands360mx" target="_blank" rel="noopener">Instagram</a><a href="https://stands360.com" target="_blank" rel="noopener">stands360.com</a>':'<a href="https://amincastelan.vercel.app" target="_blank" rel="noopener">amincastelan.vercel.app</a>')+'</span></div>';
 }
