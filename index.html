@@ -32,5 +32,6 @@ Error generating stack: `+e.message+`
   <body>
     <div id="root"></div>
   <script>(function(){function mk(c,t){var a=document.createElement("a");a.className=c.className||"text-sm text-white/85";a.textContent=t;a.setAttribute("href","/portal/");a.setAttribute("data-portal","1");return a}function go(){try{var h=document.querySelector("header");if(!h||h.querySelector("[data-portal]"))return;var as=h.querySelectorAll("a,button"),c=null,k=null;for(var i=0;i<as.length;i++){var t=as[i].textContent;if(!c&&/^\s*contacto\s*$/i.test(t))c=as[i];if(!k&&/cotiza/i.test(t))k=as[i]}if(c&&c.offsetParent!==null){var a=mk(c,"Portal de clientes");a.style.marginLeft="2.5rem";c.parentNode.insertBefore(a,c.nextSibling)}else if(k){var m=mk(c||k,"Portal");m.className="text-sm text-white/85";m.style.marginRight="16px";m.style.alignSelf="center";k.parentNode.insertBefore(m,k)}}catch(e){}}new MutationObserver(go).observe(document.documentElement,{childList:true,subtree:true});go()})();</script>
+<script src="https://acmarketing.com.mx/ac/bot.js" data-negocio="stands360" defer></script>
 </body>
 </html>
