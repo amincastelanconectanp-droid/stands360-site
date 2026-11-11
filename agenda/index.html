@@ -23,17 +23,13 @@
     if(d)return d.trim().toLowerCase();
     var m=location.pathname.match(/\/agenda\/([^\/?#]+)/i);
     if(m&&!/\.html?$/i.test(m[1]))return decodeURIComponent(m[1]).toLowerCase();
-    return 'acmarketing';
+    return 'stands360';
   }
   var slug=pick().replace(/[^a-z0-9_-]/g,'');
-  var theme=slug==='stands360'?'s360':slug==='isra'?'isra':'ac';
+  slug='stands360';var theme='s360';
   var META={
-    ac:{t:'Agenda tu asesoría · AC Marketing',d:'Agenda una asesoría gratis con AC Marketing: páginas web, apps y redes que venden. Elige día y hora, confirmación inmediata.',c:'#111418',img:'bio/ac.jpg',
-        f:'family=Sora:wght@400;500;600;700;800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700'},
     s360:{t:'Agenda con tu Project Manager · STANDS 360',d:'STANDS 360: diseño, fabricación y montaje de stands en todo México. Agenda una llamada con tu Project Manager.',c:'#2B5FD9',img:'bio/stands.jpg',
-        f:'family=Archivo:wdth,wght@75..125,400..800&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600'},
-    isra:{t:'Agenda una llamada con Amín Castelán',d:'Ventas, desarrollo de negocio, marcas y eventos. Agenda una llamada conmigo, te respondo yo.',c:'#1B2238',img:'bio/amin-hero.jpg',
-        f:'family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..600&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700'}
+        f:'family=Archivo:wdth,wght@75..125,400..800&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600'}
   }[theme];
   window.__SLUG=slug;window.__THEME=theme;window.__KNOWN=!!KNOWN[slug];
   var h=document.documentElement;h.setAttribute('data-brand',theme);
@@ -609,20 +605,6 @@ var DEMOS=[
 ];
 
 var BR={
-  ac:{
-    name:'AC Marketing',tag:'Webs, apps y redes que venden',logo:ST+'bio/logo-ac2.jpg',mono:'AC',wa:'525540433448',
-    host:'Equipo AC Marketing',hostRole:'Asesores de webs, apps y redes',
-    ey:'Agenda tu asesoría',h:'Elige tema, día y hora',steps:['Asesoría','Día y hora','Tus datos'],
-    svcIcons:['spark','trend','web','phone'],
-    perks:[['bolt','Confirmación al instante'],['shield','Sin compromiso'],['chat','Seguimiento por WhatsApp']],
-    waHello:'Hola AC Marketing',
-    brief:{title:'Cuéntanos rápido de tu negocio',sub:'Así llegamos a la llamada con ideas, no con preguntas.',qs:[
-      {k:'Giro',opts:['Restaurante','Salud','Belleza','Gimnasio','Despacho','Tienda','Escuela','Otro']},
-      {k:'¿Tienes página?',opts:['Sí','No','Está desactualizada']},
-      {k:'Redes activas',multi:1,opts:['Instagram','Facebook','TikTok','Google Maps','Ninguna']}
-    ],notePh:'¿Qué te gustaría lograr? Ej. más reservas, vender en línea…'},
-    next:[['Te escribimos por WhatsApp','Para confirmar y enviarte el enlace de la llamada.'],['Revisamos tu negocio','Página, redes y Google Maps, antes de hablar.'],['Te mostramos una demo de tu giro','Y un plan claro de por dónde empezar.']]
-  },
   s360:{
     name:'STANDS 360',tag:'Diseño y dirección de stands',logo:ST+'bio/logo-s360.jpg?v=2',mono:'S360',wa:'525531111441',
     host:'Project Manager STANDS 360',hostRole:'Diseño, fabricación y montaje',
@@ -636,23 +618,10 @@ var BR={
       {k:'Medidas',opts:['9 m²','18 m²','36 m²','54 m²+','Isla','Por definir']}
     ],notePh:'Marca, objetivo del stand o algo que debamos saber'},
     next:[['Tu Project Manager confirma','Te escribe por WhatsApp con el enlace o la dirección.'],['Prepara tu material','Logo, manual de la expo y medidas del espacio.'],['Definimos el brief','Con eso arrancan tus 3 versiones de render.']]
-  },
-  isra:{
-    name:'Amín Castelán',tag:'Ventas · Negocio · Eventos',logo:ST+'bio/amin-hd.jpg',mono:'AC',wa:'525531111441',
-    host:'Amín Castelán',hostRole:'Te respondo yo',
-    ey:'Agenda una llamada',h:'Elige un espacio conmigo',steps:['Tema','Día y hora','Tus datos'],
-    svcIcons:['coffee','trend','spark','mic'],
-    perks:[['user','Te atiendo yo, sin intermediarios'],['video','Videollamada o en persona'],['chat','Confirmo por WhatsApp']],
-    waHello:'Hola Amín',
-    brief:{title:'Para llegar preparado',sub:'Opcional, pero me ayuda mucho.',qs:[
-      {k:'¿De dónde me conoces?',opts:['Instagram','TikTok','LinkedIn','Recomendación','Un evento']},
-      {k:'Tu proyecto es…',opts:['Negocio propio','Empresa','Marca personal','Evento']}
-    ],notePh:'¿De qué te gustaría que platiquemos?'},
-    next:[['Te escribo por WhatsApp','Para confirmar y decidir: videollamada o en persona.'],['Te mando el enlace','Un día antes, con un recordatorio.'],['Llega con tu pregunta principal','Salimos con próximos pasos claros.']]
   }
 };
 var C=BR[THEME];
-var AGENDAS=[['acmarketing','AC Marketing','Asesoría de webs, apps y redes',ST+'bio/logo-ac2.jpg','AC'],['stands360','STANDS 360','Stands y eventos corporativos',ST+'bio/logo-s360.jpg?v=2','S360'],['isra','Amín Castelán','Ventas, negocio y eventos',ST+'bio/amin-hd.jpg','AC']];
+var AGENDAS=[['stands360','STANDS 360','Stands y eventos corporativos',ST+'bio/logo-s360.jpg?v=2','S360']];
 
 /* ================= STATE ================= */
 var S={neg:null,servs:[],busy:[],step:1,svc:null,day:null,slot:null,brief:{},form:{nombre:'',tel:'',email:'',nota:''},res:null,days:[],flash:null,sending:false};
@@ -754,20 +723,7 @@ function renderTop(){
 }
 function renderHero(){
   var h=document.getElementById('hero'),html='';
-  if(THEME==='ac'){
-    html='<div class="wrap"><div class="ac-grid"><div>'+
-      '<div class="ey">Agencia digital · Tulancingo · CDMX</div>'+
-      '<h1 class="ac-h1" style="margin-top:14px">Tu negocio, <em>vendiendo</em> en digital.</h1>'+
-      '<p class="ac-sub">Agenda una asesoría con nuestro equipo. Revisamos tu página, redes y Google Maps, y te decimos por dónde empezar.</p>'+
-      '<div class="ac-cta"><a class="btn btn-acc" href="#book">Agendar asesoría <span class="arr">'+ic('arrow','s18')+'</span></a><span id="nf"></span></div>'+
-      '<div class="chips"><span class="chip">'+ic('check','s16')+'Diagnóstico sin costo</span><span class="chip">'+ic('bolt','s16')+'Respuesta el mismo día</span><span class="chip">'+ic('pin','s16')+'Hidalgo · CDMX · remoto</span></div>'+
-      '</div><div class="ac-card"><div class="host">'+img(C.logo,'Logo AC Marketing','av','AC')+'<div><b>Equipo AC Marketing</b><small>Webs · Apps · Redes · Agendo</small></div></div>'+
-      '<div class="ac-kpis"><div><b>10</b><span>giros con demo lista</span></div><div><b>3</b><span>pasos para agendar</span></div><div><b>24/7</b><span>tu agenda en línea</span></div></div>'+
-      '<p style="position:relative;margin-top:16px;font-size:14px;color:var(--mut)">“Experiencia de grandes empresas, atención de negocio propio.”</p></div></div>'+
-      '<div class="proof"><div class="proof-h"><h2>Demos por giro</h2><a href="https://acmarketing.com.mx/clientes/" target="_blank" rel="noopener">Ver todas →</a></div><div class="strip">'+
-      DEMOS.map(function(d){return '<a class="demo" style="--c:'+d[3]+'" href="https://acmarketing.com.mx/demos/agendo/'+d[0]+'.html" target="_blank" rel="noopener"><div class="ph">'+img(UN(d[2],320,240),'')+'<i></i></div><span>'+d[1]+ic('ext','s16')+'</span></a>'}).join('')+
-      '</div></div></div>';
-  }else if(THEME==='s360'){
+  if(THEME==='s360'){
     html='<div class="s-hero"><div class="wrap"><div class="mosaic">'+
       '<figure>'+img(UN('1612180341933-aedf0a8c7315',900,900),'Render de un espacio en 3D','',null,'fetchpriority="high"')+'<figcaption>01 · Planeando</figcaption></figure>'+
       '<figure>'+img(UN('1687422810663-c316494f725a',600,420),'Fabricación en taller')+'<figcaption>02 · Armando</figcaption></figure>'+
@@ -781,16 +737,6 @@ function renderHero(){
       '<div class="wrap"><ol class="method" aria-label="Nuestro método">'+
       [['01','Brief','Objetivo, marca y m²'],['02','3 renders','Tres versiones a elegir'],['03','Medidas reales','Visita y levantamiento'],['04','Planos','Arquitectónicos y técnicos'],['05','Montaje','Fabricación e instalación']].map(function(s,i){return '<li class="'+(i===0?'on':'')+'"><b>'+s[0]+'</b><span>'+s[1]+'</span><small>'+s[2]+'</small></li>'}).join('')+
       '</ol></div>';
-  }else{
-    html='<div class="i-hero"><div class="wrap"><div class="i-grid">'+
-      '<div class="portrait"><div class="ring"></div>'+img(C.logo,'Amín Castelán','', 'AC','fetchpriority="high"')+'<div class="badge"><i></i>Te respondo yo</div></div>'+
-      '<div><div class="i-name"><b>Amín Castelán</b><span>· Tulancingo · CDMX</span></div>'+
-      '<h1 class="i-h1">Platiquemos. <em>Te respondo yo.</em></h1>'+
-      '<p class="i-sub">Ventas, desarrollo de negocio, marcas y eventos. Elige un espacio y lo aterrizamos juntos.</p>'+
-      '<div class="creds"><div><b>10+</b><span>años en ventas y medios</span></div><div><b>TV Azteca</b><span>7 años · 2016–2023</span></div><div><b>1,000+</b><span>asistentes · Siemens</span></div></div>'+
-      '<p class="quote">“Experiencia de grandes empresas, atención de negocio propio.”</p>'+
-      '<div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:22px;align-items:center"><a class="btn btn-acc" href="#book">Elegir horario '+ic('arrow','s18')+'</a><span id="nf"></span></div>'+
-      '</div></div></div></div>';
   }
   h.innerHTML=html;
 }
@@ -1005,15 +951,7 @@ function done(st){
 /* ================= TRUST + FOOTER ================= */
 function renderTrust(){
   var el=document.getElementById('trustIn'),h='';
-  if(THEME==='ac'){
-    h='<div class="sec-h"><div class="ey">Lo que hacemos</div><h2>Demos reales, no promesas.</h2><p>Antes de cotizar te enseñamos cómo se vería en tu giro. Ábrelas desde tu celular.</p></div><div class="prods">'+
-      '<a class="prod big" href="https://acmarketing.com.mx/demos/agendo/restaurante.html" target="_blank" rel="noopener"><span class="go">'+ic('ext','s18')+'</span><span class="ic">'+ic('cal')+'</span><div><b>Agendo · reservas en línea</b><p>Tu cliente agenda solo, tú ves todo en un panel. 10 giros con demo lista: restaurante, pilates, consultorio, abogados y más.</p><div class="chips" style="margin-top:14px">'+DEMOS.slice(0,5).map(function(d){return '<span class="chip" style="font-size:11.5px;padding:5px 10px"><i style="width:8px;height:8px;border-radius:50%;background:'+d[3]+'"></i>'+d[1]+'</span>'}).join('')+'</div></div></a>'+
-      '<a class="prod" href="https://acmarketing.com.mx/menu/demo.html" target="_blank" rel="noopener"><span class="go">'+ic('ext','s18')+'</span><span class="ic">'+ic('menu')+'</span><div><b>Agendo Menú</b><p>Menú digital y pedidos para restaurantes.</p></div></a>'+
-      '<a class="prod" href="https://acmarketing.com.mx/demos/redes/restaurantes.html" target="_blank" rel="noopener"><span class="go">'+ic('ext','s18')+'</span><span class="ic">'+ic('ig')+'</span><div><b>Redes que venden</b><p>Contenido, reels y anuncios.</p></div></a>'+
-      '<a class="prod" href="https://acmarketing.com.mx/escuela/demo.html" target="_blank" rel="noopener"><span class="go">'+ic('ext','s18')+'</span><span class="ic">'+ic('cap')+'</span><div><b>Apps a la medida</b><p>Escuelas, gimnasios y más.</p></div></a>'+
-      '<a class="prod" href="https://acmarketing.com.mx/clientes/" target="_blank" rel="noopener"><span class="go">'+ic('ext','s18')+'</span><span class="ic">'+ic('web')+'</span><div><b>Páginas web</b><p>Rápidas, claras y listas para Google.</p></div></a>'+
-      '</div>';
-  }else if(THEME==='s360'){
+  if(THEME==='s360'){
     var W=[['1542621334-a254cf47733d','01 · Planeando','Stand 6×3 m · Expo industrial','CDMX · marzo 2027',28,[['Brief',2],['Render v2 de 3',1],['Planos',0]]],
       ['1683115100702-af818681184d','02 · Armando','Isla 9×6 m · Expo de alimentos','Guadalajara · febrero 2027',64,[['Planos',2],['Fabricación',1],['Montaje',0]]],
       ['1766802981817-776406db6807','03 · Entregando','Evento corporativo · 600 personas','Querétaro · diciembre 2026',92,[['Montaje',2],['Prueba de luces',2],['Entrega',1]]]];
@@ -1022,25 +960,14 @@ function renderTrust(){
         w[5].map(function(t){return '<li class="s'+t[1]+'">'+(t[1]===2?ic('check','s16'):'<i></i>')+t[0]+'</li>'}).join('')+'</ul></div></article>'}).join('')+
       '</div><p class="priv">'+ic('shield','s18')+'<span>Los proyectos que ya entregamos te los mostramos <b>en privado, en tu reunión</b>. Cuidamos la confidencialidad de cada marca.</span></p>'+
       '</div>';
-  }else{
-    h='<div class="bio"><div><div class="sec-h"><div class="ey">Quién soy</div><h2>Dirijo marcas, ventas y eventos.</h2></div>'+
-      '<div class="bio-card"><p>Soy Amín Castelán; muchos me conocen como Isra. Más de 10 años vendiendo y creando negocio en medios, eventos y publicidad.</p><p>Hoy dirijo STANDS 360 y AC Marketing, y llevo desarrollo de negocio en MEC Identity. Si tienes un proyecto, una marca o un evento, lo platicamos.</p>'+
-      '<div class="soc"><a class="pill" href="https://instagram.com/amincastelan" target="_blank" rel="noopener">'+ic('ig','s16')+'@amincastelan</a><a class="pill" href="https://www.tiktok.com/@isracs89" target="_blank" rel="noopener">'+ic('tt','s16')+'@isracs89</a><a class="pill" href="https://amincastelan.vercel.app/portafolio" target="_blank" rel="noopener">'+ic('ext','s16')+'Portafolio</a></div></div></div>'+
-      '<div class="bio-card"><div class="ey" style="margin-bottom:6px">Trayectoria</div><div class="tl">'+
-      '<div><span>Hoy</span><div><b>MEC Identity</b><small>Business Development & Sales · OOH / BTL</small></div></div>'+
-      '<div><span>Hoy</span><div><b>STANDS 360 · AC Marketing</b><small>Dirijo ambas marcas</small></div></div>'+
-      '<div><span>2024–2025</span><div><b>Nisua</b><small>Eventos corporativos · Siemens 1,000+ asistentes</small></div></div>'+
-      '<div><span>2016–2023</span><div><b>TV Azteca</b><small>Ventas y cuentas comerciales</small></div></div>'+
-      '<div><span>UAEH</span><div><b>Ciencias de la Comunicación</b><small>Licenciatura</small></div></div>'+
-      '</div></div></div>';
   }
   el.innerHTML=h;
 }
 function renderFoot(){
   var w=C.wa;
   document.getElementById('foot').innerHTML='<h3>¿Prefieres escribir?</h3><div class="agendas">'+[].map(function(a){return '<a class="ag" href="?n='+a[0]+'">'+img(a[3],'','',a[4])+'<span class="tx"><b>'+a[1]+'</b><span>'+a[2]+'</span></span>'+ic('arrow','s18')+'</a>'}).join('')+'<a class="ag" href="https://wa.me/'+w+'?text='+encodeURIComponent(C.waHello+', quiero agendar una cita.')+'" target="_blank" rel="noopener"><span class="wai">'+ic('wa')+'</span><span class="tx"><b>Escríbenos por WhatsApp</b><span>Respuesta rápida</span></span>'+ic('ext','s18')+'</a></div>'+
-    '<div class="fb"><span>© '+new Date().getFullYear()+' '+esc(C.name)+(THEME==='s360'?' · AXIOM GROUP S.A.S.':'')+' · Tulancingo, Hgo.</span><span style="display:flex;gap:16px;flex-wrap:wrap"><a href="https://wa.me/'+w+'" target="_blank" rel="noopener" style="display:inline-flex;gap:6px;align-items:center">'+ic('wa','s16')+'WhatsApp</a>'+
-    (THEME==='ac'?'<a href="https://instagram.com/acmarketing_official" target="_blank" rel="noopener">Instagram</a><a href="https://acmarketing.com.mx" target="_blank" rel="noopener">acmarketing.com.mx</a>':THEME==='s360'?'<a href="https://instagram.com/stands360mx" target="_blank" rel="noopener">Instagram</a><a href="https://stands360.com" target="_blank" rel="noopener">stands360.com</a>':'<a href="https://amincastelan.vercel.app" target="_blank" rel="noopener">amincastelan.vercel.app</a>')+'</span></div>';
+    '<div class="fb"><span>© '+new Date().getFullYear()+' '+esc(C.name)+' · Ciudad de México</span><span style="display:flex;gap:16px;flex-wrap:wrap"><a href="https://wa.me/'+w+'" target="_blank" rel="noopener" style="display:inline-flex;gap:6px;align-items:center">'+ic('wa','s16')+'WhatsApp</a>'+
+    '<a href="https://instagram.com/stands360mx" target="_blank" rel="noopener">Instagram</a><a href="https://stands360.com" target="_blank" rel="noopener">stands360.com</a>'+'</span></div>';
 }
 
 renderTop();renderHero();renderTrust();renderFoot();
