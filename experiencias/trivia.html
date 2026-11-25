@@ -1,0 +1,44 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow,noarchive">
+<title>Trivia con premio · demo</title>
+<style>
+:root{--bg:#070d1d;--card:#111c38;--line:#26365f;--fg:#eef2fc;--mut:#a3afcf;--b:#4f7dff;--g:#c9a45a;--ok:#2fbf71;--bad:#e5484d}
+html,body{margin:0;height:100%;background:radial-gradient(circle at 50% 0,#17295a,#070d1d 60%);color:var(--fg);font-family:Inter,Arial,sans-serif;overflow:hidden;user-select:none;-webkit-tap-highlight-color:transparent}
+.sc{position:fixed;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;padding:24px;text-align:center;box-sizing:border-box}
+.sc.on{display:flex;animation:in .5s ease}@keyframes in{from{opacity:0;transform:scale(.97)}}
+h1{font-size:clamp(34px,7vh,72px);margin:0 0 10px;line-height:1.02}h2{font-size:clamp(22px,4.2vh,40px);margin:0 0 22px;max-width:900px;line-height:1.15}
+p{color:var(--mut);font-size:clamp(15px,2.2vh,20px);margin:0 0 22px;max-width:640px}
+.big{background:var(--b);color:#fff;border:0;border-radius:18px;padding:22px 48px;font:800 clamp(18px,3vh,26px) Inter,Arial;cursor:pointer;box-shadow:0 16px 40px rgba(79,125,255,.45);animation:pulse 1.8s infinite}
+@keyframes pulse{50%{transform:scale(1.05)}}
+.ops{display:grid;grid-template-columns:1fr 1fr;gap:14px;width:min(900px,94vw)}
+.op{background:var(--card);border:2px solid var(--line);border-radius:16px;padding:22px;font:700 clamp(16px,2.6vh,24px) Inter,Arial;color:#fff;cursor:pointer}
+.op.ok{background:var(--ok);border-color:var(--ok)}.op.bad{background:var(--bad);border-color:var(--bad)}
+.top{position:fixed;top:16px;left:20px;right:20px;display:flex;justify-content:space-between;font-weight:700;color:var(--mut);font-size:15px}
+.bar{position:fixed;left:0;top:0;height:6px;background:var(--g);transition:width .1s linear}
+form{display:flex;flex-direction:column;gap:12px;width:min(460px,92vw);text-align:left}
+input{background:#0b1430;border:1px solid var(--line);color:#fff;border-radius:12px;padding:14px;font:16px Inter,Arial}
+label.ck{display:flex;gap:10px;font-size:13px;color:var(--mut);align-items:flex-start}
+.pr{font-size:clamp(60px,14vh,140px);font-weight:900;color:var(--g);line-height:1}
+ol{text-align:left;color:var(--mut);font-size:16px;margin:10px 0 0}
+.tag{position:fixed;bottom:12px;left:0;right:0;text-align:center;color:#5d6a90;font-size:12px}
+</style></head><body>
+<div class="bar" id="bar"></div>
+<section class="sc on" id="s0"><div style="font-size:13px;letter-spacing:.25em;color:#8fb0ff;margin-bottom:14px">TU MARCA · TRIVIA</div><h1>¿Cuánto sabes<br>de nuestra marca?</h1><p>5 preguntas, 10 segundos cada una. Acierta y gana un premio.</p><button class="big" id="go">Toca para jugar</button></section>
+<section class="sc" id="s1"><div class="top"><span id="qn"></span><span id="pts"></span></div><h2 id="q"></h2><div class="ops" id="ops"></div></section>
+<section class="sc" id="s2"><div class="pr" id="fin"></div><h2 id="msg"></h2><p>Déjanos tus datos para entregarte tu premio y entrar a la rifa del día.</p>
+<form id="f"><input required placeholder="Nombre" id="n" autocomplete="off"><input required type="email" placeholder="Correo" id="e" autocomplete="off"><input placeholder="Empresa" id="c" autocomplete="off">
+<label class="ck"><input type="checkbox" required style="width:auto;margin-top:2px">Acepto el aviso de privacidad y que me contacten.</label><button class="big" style="animation:none">Recibir mi premio</button></form></section>
+<section class="sc" id="s3"><h1>¡Listo!</h1><p>Muestra esta pantalla en el mostrador para recoger tu premio.</p><h2 style="margin:10px 0 0;font-size:20px">Mejores del día</h2><ol id="lb"></ol><button class="big" style="margin-top:24px;animation:none" id="again">Siguiente jugador</button></section>
+<div class="tag">Demo STANDS 360 · las preguntas, colores, premios y logo se hacen con la marca del cliente</div>
+<script>
+const Q=[["¿En qué año se fundó la marca?",["1998","2005","2012","2019"],1],["¿Cuál de estos productos fabricamos?",["Tensores","Llantas","Aceite","Baterías"],0],["¿En cuántos países vendemos?",["3","8","15","22"],2],["¿Qué significa nuestro símbolo?",["Velocidad","Confianza","Origen","Fuerza"],2],["¿Cuál es nuestro producto estrella?",["Bomba de agua","Poleas","Soportes de motor","Embragues"],2]];
+const $=id=>document.getElementById(id);let i=0,pts=0,T=null,LB=[];
+function show(n){document.querySelectorAll('.sc').forEach(s=>s.classList.toggle('on',s.id==='s'+n));}
+function ask(){if(i>=Q.length)return end();const [q,ops,ok]=Q[i];$('qn').textContent='Pregunta '+(i+1)+' de '+Q.length;$('pts').textContent=pts+' pts';$('q').textContent=q;
+$('ops').innerHTML='';ops.forEach((o,k)=>{const b=document.createElement('button');b.className='op';b.textContent=o;b.onclick=()=>pick(k,b);$('ops').appendChild(b);});
+let left=10;const t0=performance.now();clearInterval(T);T=setInterval(()=>{const r=10-(performance.now()-t0)/1000;$('bar').style.width=Math.max(0,r*10)+'%';if(r<=0){clearInterval(T);pick(-1);}},50);}
+function pick(k,b){clearInterval(T);const ok=Q[i][2];const bs=[...$('ops').children];bs.forEach(x=>x.onclick=null);if(k===ok){pts+=100+Math.round(parseFloat($('bar').style.width)||0);}if(b&&k!==ok)b.classList.add('bad');bs[ok].classList.add('ok');i++;setTimeout(ask,1100);}
+function end(){$('bar').style.width='0';$('fin').textContent=pts;$('msg').textContent=pts>=400?'¡Eres experto! Ganaste el premio mayor':pts>=200?'¡Muy bien! Ganaste un premio':'¡Gracias por jugar! Llévate un detalle';show(2);}
+$('go').onclick=()=>{i=0;pts=0;show(1);ask();};
+$('f').onsubmit=e=>{e.preventDefault();LB.push([$('n').value.trim().slice(0,20)||'Jugador',pts]);LB.sort((a,b)=>b[1]-a[1]);$('lb').innerHTML='';LB.slice(0,5).forEach(r=>{const li=document.createElement('li');li.textContent=r[0]+' · '+r[1]+' pts';$('lb').appendChild(li);});$('f').reset();show(3);};
+$('again').onclick=()=>show(0);
+</script></body></html>

@@ -1,0 +1,137 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex,nofollow,noarchive">
+<title>Experiencias interactivas · STANDS 360</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+<style>
+:root{--bg:#060b18;--bg2:#0b1430;--card:#0f1a36;--line:#22305a;--fg:#eef2fc;--mut:#a3afcf;--b:#4f7dff;--b2:#8fb0ff;--g:#c9a45a;color-scheme:dark}
+*{box-sizing:border-box}[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 Inter,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+.w{max-width:1200px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header{position:relative;overflow:hidden;padding-block:54px 70px;background:radial-gradient(circle at 80% -20%,#1d3478,#0a1430 50%,var(--bg) 90%)}
+.ring{position:absolute;right:-12vmin;top:-10vmin;width:70vmin;height:70vmin;border-radius:50%;border:1px solid rgba(143,176,255,.18);animation:spin 40s linear infinite}
+.ring::after{content:"";position:absolute;inset:9vmin;border-radius:50%;border:1px dashed rgba(201,164,90,.25)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.brand{display:flex;align-items:center;gap:12px;margin-bottom:46px;position:relative}
+.lg{width:54px;height:54px;border-radius:50%;background:#f4f4f2;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 5px rgba(143,176,255,.15)}.lg img{width:86%;border-radius:50%}
+.brand b{letter-spacing:.14em;font-size:14px;display:block}.brand span{color:var(--mut);font-size:12px}
+.k{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--b2);margin-bottom:14px}
+h1{font-size:clamp(34px,6vw,70px);line-height:1.02;letter-spacing:-.025em;margin:0 0 18px;max-width:15ch;text-wrap:balance;position:relative}
+.lead{color:var(--mut);font-size:clamp(16px,1.6vw,19px);max-width:60ch;margin:0;position:relative}
+.chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px;position:relative}.chips span{border:1px solid var(--line);background:rgba(15,26,54,.7);border-radius:99px;padding:6px 14px;font-size:13px}
+.demos{margin-top:-34px;position:relative;z-index:2}
+.dg{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.dm{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;cursor:pointer;text-align:left;color:var(--fg);padding:0;font:inherit;display:flex;flex-direction:column;transition:transform .3s,border-color .3s}
+.dm:hover{transform:translateY(-4px);border-color:var(--b)}
+.dm img{width:100%;aspect-ratio:16/10;object-fit:cover;display:block}
+.dm div{padding:12px 14px 14px}.dm b{display:block;font-size:15px}.dm small{color:var(--mut);font-size:13px}
+.dm .pl{display:inline-block;margin-top:8px;color:var(--b2);font-weight:700;font-size:13px}
+section.cat{padding-top:60px}
+.ch{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:18px}
+.ch h2{font-size:clamp(24px,3vw,36px);margin:0;letter-spacing:-.015em}.ch p{margin:0;color:var(--mut);max-width:52ch}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.it{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:10px;min-width:0;opacity:0;transform:translateY(16px);transition:opacity .7s,transform .7s}
+.it.vis{opacity:1;transform:none}
+.ic{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#1c2f66,#0f1a36);border:1px solid var(--line);display:flex;align-items:center;justify-content:center}
+.ic svg{width:24px;height:24px;stroke:var(--b2);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.it h3{margin:2px 0 0;font-size:18px}.it p{margin:0;color:var(--mut);font-size:14px}
+.rows{border-top:1px solid var(--line);padding-top:10px;margin-top:auto;display:grid;gap:4px;font-size:13px}
+.rows div{display:flex;gap:8px}.rows span{color:var(--mut);min-width:96px}
+.badge{align-self:flex-start;font-size:11px;letter-spacing:.12em;text-transform:uppercase;border-radius:99px;padding:3px 10px;background:rgba(79,125,255,.15);color:var(--b2);border:1px solid rgba(79,125,255,.35)}
+.badge.live{background:rgba(47,191,113,.12);color:#6fe0a3;border-color:rgba(47,191,113,.4);cursor:pointer}
+.how{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.st{border:1px solid var(--line);border-radius:14px;padding:18px;background:linear-gradient(180deg,#0f1a36,#0b1430)}.st b{color:var(--g);font-size:12px;letter-spacing:.2em}.st h4{margin:6px 0 4px;font-size:16px}.st p{margin:0;color:var(--mut);font-size:14px}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.box{border:1px solid var(--line);border-radius:16px;padding:20px;background:var(--card)}.box h3{margin:0 0 10px}.box ul{margin:0;padding-left:18px;color:var(--mut)}.box li{margin-bottom:6px}
+.end{margin:70px 0 0;padding:44px 0 60px;border-top:1px solid var(--line);text-align:center}
+.end h2{font-size:clamp(24px,3.4vw,40px);margin:0 0 10px}.end p{color:var(--mut);margin:0 auto 22px;max-width:56ch}
+.ct{display:flex;gap:28px;justify-content:center;flex-wrap:wrap}.ct span{display:flex;flex-direction:column;user-select:all}.ct b{font-size:11px;letter-spacing:.2em;color:var(--b2);user-select:none}
+.vw{position:fixed;inset:0;z-index:50;background:#000;display:flex;flex-direction:column}
+.vb{display:flex;justify-content:space-between;align-items:center;gap:10px;background:var(--bg2);border-bottom:1px solid var(--line);padding:8px 14px;padding-top:calc(8px + env(safe-area-inset-top,0px))}
+.vb b{font-size:14px}.vb button{background:var(--b);color:#fff;border:0;border-radius:10px;padding:9px 16px;font:700 14px Inter,Arial;cursor:pointer}
+.vw iframe{flex:1;border:0;width:100%}
+@media (max-width:980px){.dg{grid-template-columns:1fr 1fr}.grid{grid-template-columns:1fr 1fr}.how{grid-template-columns:1fr 1fr}}
+@media (max-width:640px){.dg,.grid,.how,.split{grid-template-columns:1fr}}
+</style></head><body>
+<header><div class="ring"></div><div class="w">
+<div class="brand"><div class="lg"><img src="logo-s360.jpg" alt="STANDS 360"></div><div><b>STANDS 360</b><span>Experiencias interactivas para expos</span></div></div>
+<div class="k">Tecnología para stands</div>
+<h1>Que la gente se detenga, juegue y recuerde la marca</h1>
+<p class="lead">Desarrollamos juegos para pantallas touch, experiencias de realidad virtual que se ven en pantalla grande, video mapping y activaciones con cámara, todo con la imagen de cada marca y con registro de datos de los visitantes.</p>
+<div class="chips"><span>Pantallas touch</span><span>Cámara y gestos</span><span>Realidad virtual</span><span>Video mapping</span><span>Datos en vivo</span></div>
+</div></header>
+
+<main class="w">
+<div class="demos"><div class="dg" id="dg"></div></div>
+<div id="cats"></div>
+
+<section class="cat"><div class="ch"><h2>Cómo trabajamos</h2><p>De la idea a la pantalla del stand, con pruebas antes de la expo.</p></div>
+<div class="how">
+<div class="st"><b>01</b><h4>Brief</h4><p>Marca, productos, objetivo (atraer, enseñar, capturar datos) y equipo disponible en el stand.</p></div>
+<div class="st"><b>02</b><h4>Prototipo</h4><p>Una versión jugable con la imagen de la marca para aprobar la idea y el flujo.</p></div>
+<div class="st"><b>03</b><h4>Contenido final</h4><p>Fotos reales del producto, textos, sonidos, premios y tablero de registros.</p></div>
+<div class="st"><b>04</b><h4>Prueba en sitio</h4><p>Se instala en el equipo real, se prueba sin internet y se deja listo el modo kiosco.</p></div>
+</div></section>
+
+<section class="cat"><div class="split">
+<div class="box"><h3>Lo que desarrollamos</h3><ul>
+<li>Juegos, trivias, catálogos y configuradores con la marca del cliente.</li>
+<li>Escenas 3D y de realidad virtual a partir de los planos o el modelo del stand.</li>
+<li>Animaciones de video mapping a la medida de la superficie.</li>
+<li>Registro de visitantes con aviso de privacidad, tabla de ganadores y reporte al final del evento.</li>
+</ul></div>
+<div class="box"><h3>Equipo en el stand</h3><ul>
+<li>Pantalla touch, LED o TV (renta), computadora o reproductor.</li>
+<li>Lentes de realidad virtual (tipo Meta Quest) para las experiencias VR.</li>
+<li>Proyector de alta luminosidad para video mapping.</li>
+<li>Cámara web para los juegos sin tocar. Todo se puede rentar para el evento.</li>
+</ul></div>
+</div></section>
+
+<div class="end"><h2>¿Lo platicamos para tu próximo stand?</h2><p>Cada experiencia se adapta a la marca, al tamaño de la pantalla y a lo que el cliente quiere lograr en la expo.</p>
+<div class="ct"><span><b>CORREO</b>hola@stands360.com</span><span><b>WHATSAPP</b>55 3111 1441</span><span><b>WEB</b>stands360.com</span></div></div>
+</main>
+
+<div class="vw" id="vw" hidden><div class="vb"><b id="vt"></b><button type="button" id="vx">✕ Volver</button></div><iframe id="vf" title="Demo" allow="fullscreen; camera"></iframe></div>
+
+<script>
+const IC={touch:'<rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/>',game:'<path d="M6 12h4M8 10v4"/><circle cx="15" cy="11" r="1"/><circle cx="18" cy="13" r="1"/><path d="M2 14a5 5 0 0 1 5-5h10a5 5 0 0 1 5 5v1a3 3 0 0 1-5.5 1.6L15 15H9l-1.5 1.6A3 3 0 0 1 2 15z"/>',
+quiz:'<circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3"/><path d="M12 17h.01"/>',cube:'<path d="M21 16V8l-9-5-9 5v8l9 5 9-5z"/><path d="M3.3 7 12 12l8.7-5M12 22V12"/>',
+cat:'<path d="M3 6h18M3 12h18M3 18h12"/>',cam:'<path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/>',hand:'<path d="M18 11V6a2 2 0 0 0-4 0v5M14 10V4a2 2 0 0 0-4 0v6M10 10.5V6a2 2 0 0 0-4 0v8a8 8 0 0 0 16 0v-3a2 2 0 0 0-4 0"/>',
+vr:'<path d="M3 8h18v8h-6l-3-3-3 3H3z"/>',screen:'<rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>',proj:'<rect x="2" y="9" width="12" height="8" rx="2"/><circle cx="8" cy="13" r="2"/><path d="M14 11l8-4v12l-8-4"/>',
+floor:'<path d="M2 20l4-12h12l4 12z"/><path d="M12 8v12M5 14h14"/>',data:'<path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/>',sign:'<path d="M3 21l3-1 11-11-2-2L4 18z"/><path d="M14 6l2 2"/>',photo:'<rect x="3" y="6" width="18" height="14" rx="2"/><circle cx="12" cy="13" r="3.5"/><path d="M8 6l1.5-2h5L16 6"/>'};
+const DEMOS=[{t:'Knadian Arcade',d:'3 juegos de marca para pantalla touch',img:'arcade.jpg',src:'/proveedores/knadian/v1/juegos.html'},
+{t:'Trivia con premio',d:'Preguntas, puntos y registro de datos',img:'trivia.jpg',src:'trivia.html'},
+{t:'Video mapping',d:'Animación proyectada sobre el stand',img:'mapping.jpg',src:'mapping.html'},
+{t:'Recorrido 3D del stand',d:'Listo para lentes de realidad virtual',img:'recorrido.jpg',src:'/proveedores/knadian/v1/recorrido3d.html?v=V1'}];
+const CATS=[
+{h:'Pantallas touch',p:'El visitante se acerca, toca y juega. Es la forma más simple de detener a la gente en el pasillo.',items:[
+{i:'game',t:'Juegos de marca',d:'Carreras, atrapa-piezas, arma el producto o memoria con fotos reales del catálogo. El jugador aprende para qué sirve cada producto.',a:'Filas para jugar y fotos de la gente jugando',dt:'Nombre, correo, empresa y puntaje',eq:'Pantalla touch vertical u horizontal',demo:0},
+{i:'quiz',t:'Trivia o ruleta de premios',d:'Preguntas sobre la marca con tiempo, puntos y premio según el resultado. Ideal para repartir promocionales con orden.',a:'Competencia y premios al momento',dt:'Datos de contacto con aviso de privacidad',eq:'Pantalla touch o tablet',demo:1},
+{i:'cube',t:'Configurador de producto 3D',d:'El cliente gira el producto, lo abre por partes, cambia colores o versiones y manda la ficha a su correo.',a:'Muestra productos que no caben en el stand',dt:'Producto de interés y contacto',eq:'Pantalla touch o LED'},
+{i:'cat',t:'Catálogo interactivo',d:'Busca por categoría, modelo o aplicación; cada producto tiene foto, ficha y un QR para pedir cotización.',a:'Atiende cuando el staff está ocupado',dt:'Productos consultados y cotizaciones',eq:'Kiosco touch'},
+{i:'sign',t:'Muro de mensajes',d:'El visitante escribe o firma en la pantalla y su mensaje aparece en la pantalla grande del stand.',a:'Participación visible desde el pasillo',dt:'Nombre y correo',eq:'Touch + pantalla grande'}]},
+{h:'Cámara y gestos',p:'Experiencias que se juegan sin tocar: la cámara sigue la mano o el cuerpo del visitante.',items:[
+{i:'hand',t:'Juegos sin tocar',d:'El visitante mueve la mano frente a una cámara para atrapar, esquivar o armar. Ya probado en el juego Motor frío del Knadian Arcade.',a:'Llama la atención de quien pasa',dt:'Puntaje y registro',eq:'Cámara web + pantalla',demo:0},
+{i:'photo',t:'Foto de marca con QR',d:'Foto con marco de la marca o fondo del producto; el visitante la descarga con un QR y la comparte en redes.',a:'Contenido en redes con la marca',dt:'Correo o teléfono para enviar la foto',eq:'Cámara + pantalla'},
+{i:'cam',t:'Espejo de realidad aumentada',d:'El visitante se ve en pantalla con elementos de la marca: casco, uniforme, producto flotando o filtro animado.',a:'Diversión inmediata y fotos',dt:'Opcional con QR',eq:'Cámara + pantalla vertical'}]},
+{h:'Realidad virtual en pantalla grande',p:'Una persona usa los lentes y todo el pasillo ve en la pantalla lo que está viviendo.',items:[
+{i:'vr',t:'Recorrido virtual',d:'Un recorrido por la planta, el producto por dentro o el stand mismo. Lo que ve el usuario se transmite a una pantalla grande para que la fila también lo disfrute.',a:'Espectáculo para quien espera su turno',dt:'Registro antes de entrar',eq:'Lentes tipo Meta Quest + pantalla',demo:3},
+{i:'game',t:'Reto VR con marcador',d:'Armar un motor contra reloj, encontrar piezas o un tiro al blanco con productos. El marcador y el video salen en la pantalla del stand.',a:'Competencia y tabla de mejores del día',dt:'Nombre, empresa y puntaje',eq:'Lentes VR + pantalla'}]},
+{h:'Proyección y video mapping',p:'La luz convierte el stand o el producto en una pieza que se mueve.',items:[
+{i:'proj',t:'Video mapping del stand o producto',d:'Animaciones hechas a la medida de la superficie: el stand se dibuja, aparece el logo o la luz recorre el producto. Se programa en ciclos cortos.',a:'Momento visual que se graba y se comparte',dt:'—',eq:'Proyector de alta luminosidad',demo:2},
+{i:'floor',t:'Piso interactivo',d:'Una proyección en el piso que reacciona cuando la gente pisa: hojas que se mueven, logo que aparece o un juego de futbolito de luz.',a:'Se juega al pasar, sin explicar nada',dt:'—',eq:'Proyector + cámara en el techo'},
+{i:'screen',t:'Show de lanzamiento',d:'Una secuencia de video, luz y sonido de 1 a 3 minutos para presentar un producto a una hora fija.',a:'Reúne a la gente en el stand',dt:'Asistentes por función',eq:'Proyector o LED + audio'}]},
+{h:'Datos y pantallas en vivo',p:'Todo lo que pasa en las experiencias se vuelve información para la marca.',items:[
+{i:'data',t:'Tablero de visitantes',d:'Registros, puntajes y productos de interés en tiempo real; reporte al final de cada día para darle seguimiento a los contactos.',a:'Resultados medibles de la expo',dt:'Todos los registros del evento',eq:'Navegador en cualquier computadora'},
+{i:'screen',t:'Pantalla de ganadores y rifas',d:'Tabla de mejores del día, cuenta regresiva para la rifa y anuncio del ganador en la pantalla grande.',a:'Hace que la gente regrese al stand',dt:'Participantes de la rifa',eq:'Pantalla LED o TV'}]}];
+const dg=document.getElementById('dg');
+dg.innerHTML=DEMOS.map((d,k)=>`<button class="dm" type="button" data-k="${k}"><img src="${d.img}" alt="${d.t}"><div><b>${d.t}</b><small>${d.d}</small><span class="pl">▶ Probar demo</span></div></button>`).join('');
+document.getElementById('cats').innerHTML=CATS.map(c=>`<section class="cat"><div class="ch"><h2>${c.h}</h2><p>${c.p}</p></div><div class="grid">${c.items.map(it=>`<article class="it">
+<div style="display:flex;justify-content:space-between;align-items:center"><div class="ic"><svg viewBox="0 0 24 24">${IC[it.i]}</svg></div>${it.demo!=null?`<span class="badge live" data-k="${it.demo}">▶ Demo</span>`:'<span class="badge">A la medida</span>'}</div>
+<h3>${it.t}</h3><p>${it.d}</p><div class="rows"><div><span>Qué logra</span>${it.a}</div><div><span>Datos</span>${it.dt}</div><div><span>Equipo</span>${it.eq}</div></div></article>`).join('')}</div></section>`).join('');
+const vw=document.getElementById('vw'),vf=document.getElementById('vf');
+document.addEventListener('click',e=>{const b=e.target.closest('[data-k]');if(!b)return;const d=DEMOS[+b.dataset.k];vf.src=d.src;document.getElementById('vt').textContent=d.t;vw.hidden=false;document.body.style.overflow='hidden';});
+document.getElementById('vx').onclick=()=>{vw.hidden=true;vf.removeAttribute('src');document.body.style.overflow='';};
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target);}}),{threshold:.12});
+document.querySelectorAll('.it').forEach((el,i)=>{el.style.transitionDelay=(i%3)*90+'ms';io.observe(el);});
+</script></body></html>
