@@ -1,0 +1,83 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no"><meta name="robots" content="noindex,nofollow,noarchive">
+<meta name="theme-color" content="#060b18"><meta name="apple-mobile-web-app-capable" content="yes">
+<title>Control del show · KNADIAN · STANDS 360</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap">
+<style>
+:root{--bg:#060b18;--card:#0f1a36;--line:#22305a;--fg:#eef2fc;--mut:#a3afcf;--b:#4f7dff;--b2:#8fb0ff;--g:#c9a45a;--ok:#2fbf71;--red:#e5484d;color-scheme:dark}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.5 Inter,-apple-system,Arial,sans-serif;padding:calc(12px + env(safe-area-inset-top,0px)) max(14px,env(safe-area-inset-right,0px)) calc(24px + env(safe-area-inset-bottom,0px)) max(14px,env(safe-area-inset-left,0px))}
+.w{max-width:980px;margin:0 auto}
+.top{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.lg{width:42px;height:42px;border-radius:50%;background:#f4f4f2;display:flex;align-items:center;justify-content:center;flex:none}.lg img{width:86%;border-radius:50%}
+.top b{display:block;font-size:13px;letter-spacing:.14em}.top span{color:var(--mut);font-size:12px}
+.st{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.pill{font-size:11px;border:1px solid var(--line);border-radius:99px;padding:4px 10px;color:var(--mut);display:flex;align-items:center;gap:6px;white-space:nowrap}
+.pill i{width:8px;height:8px;border-radius:50%;background:#55607e}.pill.on i{background:var(--ok);box-shadow:0 0 8px var(--ok)}
+h1{font-size:clamp(22px,4vw,32px);margin:4px 0 4px;letter-spacing:-.01em}.sub{color:var(--mut);margin:0 0 14px;font-size:14px}
+.grid{display:grid;grid-template-columns:1.1fr 1fr;gap:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;min-width:0}
+.card h2{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--b2);margin:0 0 10px}
+#pv{width:100%;aspect-ratio:16/9;border-radius:10px;background:#000;display:block}
+.leds{display:grid;grid-template-columns:repeat(40,1fr);gap:3px;margin-top:10px}.leds i{aspect-ratio:1;border-radius:50%;background:#222}
+.now{display:flex;justify-content:space-between;align-items:center;margin-top:10px;font-size:13px;color:var(--mut)}.now b{color:var(--fg)}
+.scs{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.sc{background:#0b1430;border:2px solid var(--line);border-radius:14px;padding:14px 12px;text-align:left;color:var(--fg);font:inherit;cursor:pointer;min-height:84px;transition:transform .15s,border-color .2s}
+.sc:active{transform:scale(.97)}.sc b{display:block;font-size:15px;margin-bottom:3px}.sc small{color:var(--mut);font-size:12px;line-height:1.35;display:block}
+.sc.on{border-color:var(--g);background:linear-gradient(160deg,#2a2412,#0b1430)}
+.sc.win{border-color:#7a5b1d}.sc.off{border-color:#5a2a2e}
+.row{display:flex;align-items:center;gap:12px;margin-top:12px}.row label{width:84px;color:var(--mut);font-size:13px}
+input[type=range]{flex:1;accent-color:var(--g);height:28px}
+.cols{display:flex;gap:10px}.cl{width:44px;height:44px;border-radius:50%;border:3px solid transparent;cursor:pointer}.cl.on{border-color:#fff}
+.warn{background:#2a1c10;border:1px solid #6b4a1a;color:#f3d9a8;border-radius:12px;padding:12px;font-size:13px;margin-bottom:14px}
+.foot{color:#5d6a90;font-size:12px;text-align:center;margin-top:18px}
+@media (max-width:760px){.grid{grid-template-columns:1fr}}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="show.js"></script></head><body><div class="w">
+<div class="top"><div class="lg"><img src="logo-s360.jpg" alt="STANDS 360"></div><div><b>STANDS 360</b><span>Show de luz · KNADIAN Arcade</span></div>
+<div class="st"><span class="pill" id="pP"><i></i>Proyector</span><span class="pill" id="pL"><i></i>LED</span><span class="pill" id="pC"><i></i><span id="nC">1 control</span></span></div></div>
+<div class="warn" id="noTok" hidden>Esta liga no tiene código de acceso. Pide a STANDS 360 la liga completa del show. Mientras, puedes ver la vista previa.</div>
+<h1>Control del show de luz</h1><p class="sub">Toca una escena: el proyector y las luces LED del stand cambian al mismo tiempo. Cualquier celular o iPad con esta liga puede controlarlo.</p>
+<div class="grid">
+<div class="card"><h2>Así se ve ahora</h2><canvas id="pv" width="960" height="540"></canvas><div class="leds" id="leds"></div>
+<div class="now"><span>Escena: <b id="cur">Ambiente</b></span><span id="tm"></span></div></div>
+<div class="card"><h2>Escenas</h2><div class="scs" id="scs"></div>
+<div class="row"><label for="bri">Brillo</label><input type="range" id="bri" min="10" max="100" value="90"></div>
+<div class="row"><label for="spd">Velocidad</label><input type="range" id="spd" min="50" max="200" value="100"></div>
+<div class="row"><label>Color</label><div class="cols" id="cols"></div></div></div>
+</div>
+<p class="foot">STANDS 360 · hola@stands360.com · 55 3111 1441</p></div>
+<script>
+const SH=S360SHOW,$=id=>document.getElementById(id);
+let ST={scene:'ambiente',at:Date.now(),bri:.9,speed:1,color:'calido'},link=null;
+if(!SH.TOKEN)$('noTok').hidden=false;
+$('scs').innerHTML=SH.SCENES.map(s=>`<button class="sc${s.id==='ganador'?' win':''}${s.id==='apagado'?' off':''}" data-s="${s.id}" type="button"><b>${s.name}</b><small>${s.desc}</small></button>`).join('');
+const CN={calido:'Cálido',maple:'Rojo maple',azul:'Azul',blanco:'Blanco'};
+$('cols').innerHTML=Object.entries(SH.COLORS).map(([k,c])=>`<button class="cl" type="button" title="${CN[k]}" aria-label="${CN[k]}" data-c="${k}" style="background:rgb(${c})"></button>`).join('');
+function ui(){document.querySelectorAll('.sc').forEach(b=>b.classList.toggle('on',b.dataset.s===ST.scene));document.querySelectorAll('.cl').forEach(b=>b.classList.toggle('on',b.dataset.c===ST.color));
+$('cur').textContent=SH.SCENES.find(s=>s.id===ST.scene).name;$('bri').value=Math.round(ST.bri*100);$('spd').value=Math.round(ST.speed*100);}
+function push(){ui();if(link)link.send(ST);}
+$('scs').onclick=e=>{const b=e.target.closest('[data-s]');if(!b)return;ST={...ST,scene:b.dataset.s,at:Date.now()};push();if(navigator.vibrate)navigator.vibrate(20);};
+$('cols').onclick=e=>{const b=e.target.closest('[data-c]');if(!b)return;ST={...ST,color:b.dataset.c};push();};
+$('bri').oninput=e=>{ST={...ST,bri:e.target.value/100};push();};$('spd').onchange=e=>{ST={...ST,speed:e.target.value/100,at:Date.now()};push();};
+// vista previa: muro, escalera y balcon como en el stand
+const pv=$('pv'),c=pv.getContext('2d');const Z={muro:document.createElement('canvas'),escalera:document.createElement('canvas'),balcon:document.createElement('canvas')};
+Z.muro.width=640;Z.muro.height=420;Z.escalera.width=640;Z.escalera.height=240;Z.balcon.width=800;Z.balcon.height=160;
+const L=$('leds');L.innerHTML='<i></i>'.repeat(40);const LI=[...L.children];
+function frame(){let t=(Date.now()-ST.at)/1000;const sc=SH.SCENES.find(s=>s.id===ST.scene);if(!sc.loop&&t>sc.dur){ST={...ST,scene:'ambiente',at:Date.now()};ui();t=0;}
+for(const k in Z)SH.draw(Z[k].getContext('2d'),Z[k].width,Z[k].height,ST.scene,t,ST,k);
+c.fillStyle='#14171d';c.fillRect(0,0,960,540);c.fillStyle='#1f232b';c.fillRect(0,440,960,100);
+// muro izquierdo (perspectiva simple) + escalera + balcon
+c.save();c.setTransform(1,-.18,0,1,40,150);c.drawImage(Z.muro,0,0,380,300);c.restore();
+c.save();c.setTransform(1,-.55,0,.6,60,470);c.drawImage(Z.escalera,0,0,520,240);c.restore();
+c.drawImage(Z.balcon,430,160,500,90);c.strokeStyle='#2c313b';c.lineWidth=3;for(let x=440;x<930;x+=14){c.beginPath();c.moveTo(x,250);c.lineTo(x,330);c.stroke();}
+c.fillStyle='#222631';c.fillRect(430,250,500,8);c.fillRect(430,330,500,6);
+c.fillStyle='#e04a1e';c.globalAlpha=.85;c.beginPath();c.moveTo(800,40);c.lineTo(830,90);c.lineTo(870,70);c.lineTo(850,120);c.lineTo(890,130);c.lineTo(820,160);c.lineTo(760,130);c.lineTo(800,120);c.lineTo(780,70);c.closePath();c.fill();c.globalAlpha=1;
+c.fillStyle='rgba(255,255,255,.55)';c.font='600 16px Inter,Arial';c.fillText('Muro de la escalera',60,140);c.fillText('Balcón',440,150);c.fillText('Escalera',90,520);
+LI.forEach((d,i)=>{const [r,g,b]=SH.ledAt(ST.scene,t,ST,i/39);d.style.background=`rgb(${r|0},${g|0},${b|0})`;d.style.boxShadow=`0 0 8px rgb(${r|0},${g|0},${b|0})`;});
+$('tm').textContent=sc.loop?'en ciclo':Math.max(0,Math.ceil(sc.dur-t))+' s';requestAnimationFrame(frame);}
+ui();frame();
+SH.connect('control',p=>{if(p&&p.ask){if(link)link.send(ST);return;}if(p&&p.scene){ST=p;ui();}},roles=>{
+$('pP').classList.toggle('on',roles.includes('proyector'));$('pL').classList.toggle('on',roles.includes('led'));const n=roles.filter(r=>r==='control').length;$('pC').classList.add('on');$('nC').textContent=n+(n===1?' control':' controles');}).then(l=>{link=l;if(l)l.send({ask:true});});
+</script></body></html>

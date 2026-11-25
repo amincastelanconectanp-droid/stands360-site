@@ -1,0 +1,51 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow,noarchive">
+<title>Proyector · Show KNADIAN</title>
+<style>
+html,body{margin:0;height:100%;background:#000;overflow:hidden;font-family:Inter,Arial,sans-serif;color:#fff;cursor:none}
+body.cal{cursor:default}
+canvas.z{position:absolute;left:0;top:0;transform-origin:0 0}
+.h{position:absolute;width:30px;height:30px;margin:-15px 0 0 -15px;border-radius:50%;border:3px solid #ffd27a;background:rgba(255,210,122,.25);display:none;cursor:grab;touch-action:none;z-index:5}
+body.cal .h{display:block}
+.lab{position:absolute;font-size:14px;font-weight:700;color:#ffd27a;display:none;z-index:5;pointer-events:none}body.cal .lab{display:block}
+#ui{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);display:flex;gap:8px;z-index:9;transition:opacity .4s}
+#ui button{background:rgba(20,24,34,.9);color:#fff;border:1px solid #444;border-radius:99px;padding:9px 14px;font:600 13px Inter,Arial;cursor:pointer}
+#ui.hide{opacity:0}
+#info{position:fixed;left:14px;top:12px;font-size:12px;color:#888;z-index:9}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="show.js"></script></head><body>
+<div id="info"></div>
+<div id="ui"><button id="fs">Pantalla completa</button><button id="cb">Calibrar zonas (C)</button><button id="rs">Restablecer</button></div>
+<script>
+const SH=S360SHOW;let ST={scene:'ambiente',at:Date.now(),bri:.9,speed:1,color:'calido'},link=null;
+const ZONES=[{k:'muro',n:'Muro de la escalera',w:1280,h:840},{k:'escalera',n:'Escalera',w:1280,h:480},{k:'balcon',n:'Balcón (faldón)',w:1600,h:320}];
+const W=()=>innerWidth,H=()=>innerHeight;
+const DEF={muro:[[.04,.06],[.46,.12],[.46,.62],[.04,.70]],escalera:[[.06,.74],[.50,.66],[.56,.80],[.08,.96]],balcon:[[.52,.18],[.96,.16],[.96,.30],[.52,.32]]};
+let Q;try{Q=JSON.parse(localStorage.getItem('s360-show-q'))||null}catch(e){Q=null}if(!Q)Q=JSON.parse(JSON.stringify(DEF));
+const save=()=>{try{localStorage.setItem('s360-show-q',JSON.stringify(Q))}catch(e){}};
+// matriz de perspectiva (cuadro -> 4 esquinas)
+function adj(m){return[m[4]*m[8]-m[5]*m[7],m[2]*m[7]-m[1]*m[8],m[1]*m[5]-m[2]*m[4],m[5]*m[6]-m[3]*m[8],m[0]*m[8]-m[2]*m[6],m[2]*m[3]-m[0]*m[5],m[3]*m[7]-m[4]*m[6],m[1]*m[6]-m[0]*m[7],m[0]*m[4]-m[1]*m[3]];}
+function mul(a,b){const c=[];for(let i=0;i<3;i++)for(let j=0;j<3;j++){let s=0;for(let k=0;k<3;k++)s+=a[3*i+k]*b[3*k+j];c[3*i+j]=s;}return c;}
+function mv(m,v){return[m[0]*v[0]+m[1]*v[1]+m[2]*v[2],m[3]*v[0]+m[4]*v[1]+m[5]*v[2],m[6]*v[0]+m[7]*v[1]+m[8]*v[2]];}
+function basis(p){const m=[p[0][0],p[1][0],p[2][0],p[0][1],p[1][1],p[2][1],1,1,1];const v=mv(adj(m),[p[3][0],p[3][1],1]);return mul(m,[v[0],0,0,0,v[1],0,0,0,v[2]]);}
+function m3d(w,h,d){const s=basis([[0,0],[w,0],[w,h],[0,h]]),D=basis(d);let t=mul(D,adj(s));t=t.map(x=>x/t[8]);return `matrix3d(${t[0]},${t[3]},0,${t[6]},${t[1]},${t[4]},0,${t[7]},0,0,1,0,${t[2]},${t[5]},0,${t[8]})`;}
+const EL={};
+ZONES.forEach(z=>{const c=document.createElement('canvas');c.className='z';c.width=z.w;c.height=z.h;document.body.appendChild(c);const lab=document.createElement('div');lab.className='lab';lab.textContent=z.n;document.body.appendChild(lab);
+const hs=[0,1,2,3].map(i=>{const h=document.createElement('div');h.className='h';document.body.appendChild(h);
+h.onpointerdown=e=>{h.setPointerCapture(e.pointerId);h.onpointermove=ev=>{Q[z.k][i]=[ev.clientX/W(),ev.clientY/H()];place();};h.onpointerup=()=>{h.onpointermove=null;save();};};return h;});
+EL[z.k]={c,ctx:c.getContext('2d'),hs,lab,z};});
+function place(){ZONES.forEach(z=>{const e=EL[z.k],d=Q[z.k].map(p=>[p[0]*W(),p[1]*H()]);e.c.style.transform=m3d(z.w,z.h,d);e.hs.forEach((h,i)=>{h.style.left=d[i][0]+'px';h.style.top=d[i][1]+'px';});e.lab.style.left=d[0][0]+8+'px';e.lab.style.top=d[0][1]+8+'px';});}
+addEventListener('resize',place);place();
+function grid(ctx,w,h){ctx.fillStyle='#000';ctx.fillRect(0,0,w,h);ctx.strokeStyle='#ffd27a';ctx.lineWidth=4;for(let i=0;i<=8;i++){ctx.beginPath();ctx.moveTo(w*i/8,0);ctx.lineTo(w*i/8,h);ctx.stroke();ctx.beginPath();ctx.moveTo(0,h*i/8);ctx.lineTo(w,h*i/8);ctx.stroke();}ctx.strokeRect(2,2,w-4,h-4);}
+let cal=false;function setCal(v){cal=v;document.body.classList.toggle('cal',v);}
+document.getElementById('cb').onclick=()=>setCal(!cal);addEventListener('keydown',e=>{if(e.key==='c'||e.key==='C')setCal(!cal);if(e.key==='f'||e.key==='F')fsn();});
+document.getElementById('rs').onclick=()=>{Q=JSON.parse(JSON.stringify(DEF));save();place();};
+function fsn(){try{document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen()}catch(e){}}document.getElementById('fs').onclick=fsn;
+let idle=0;addEventListener('pointermove',()=>{idle=0;document.getElementById('ui').classList.remove('hide');document.body.style.cursor='default';});
+setInterval(()=>{if(++idle>3&&!cal){document.getElementById('ui').classList.add('hide');document.body.style.cursor='none';}},1000);
+(async()=>{try{await navigator.wakeLock.request('screen')}catch(e){}})();
+function loop(){let t=(Date.now()-ST.at)/1000;const sc=SH.SCENES.find(s=>s.id===ST.scene)||SH.SCENES[0];if(!sc.loop&&t>sc.dur){ST={...ST,scene:'ambiente',at:Date.now()};t=0;}
+ZONES.forEach(z=>{const e=EL[z.k];cal?grid(e.ctx,z.w,z.h):SH.draw(e.ctx,z.w,z.h,ST.scene,t,ST,z.k);});requestAnimationFrame(loop);}loop();
+const info=document.getElementById('info');info.textContent=SH.TOKEN?'Conectando…':'Sin código de show (agrega ?k=… a la liga)';
+SH.connect('proyector',p=>{if(p&&p.ask){if(link)link.send(ST);return;}if(p&&p.scene){ST=p;}},roles=>{const n=roles.filter(r=>r==='control').length;info.textContent='Proyector en línea · '+n+(n===1?' control conectado':' controles conectados');}).then(l=>{link=l;if(l)l.send({ask:true});});
+</script></body></html>
