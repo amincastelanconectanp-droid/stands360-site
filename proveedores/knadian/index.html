@@ -196,7 +196,7 @@ $('goPortal').onclick=()=>show('portal');$('backP').onclick=()=>show('');
 addEventListener('hashchange',()=>show(location.hash==='#portal'?'portal':''));
 show(location.hash==='#portal'?'portal':'');
 // formato
-const PART=['Carpintería y acabados (MDF, pino, pintura)','Piso: tarima y vinil','Estructura: renta de truss','Acero fabricado, escalera y barandales','Vidrio (puertas, capelos, vitrinas, nichos)','Iluminación LED y eléctrico','Rotulación, logos y gráficos','Mobiliario y pantallas (si lo manejas)','Flete','Montaje','Desmontaje','Otros'];
+const PART=['Carpintería y acabados (MDF, pino, pintura)','Piso: tarima y vinil','Estructura: renta de truss','Acero fabricado, escalera y barandales','Vidrio (puertas, capelos, vitrinas, nichos)','Iluminación LED y eléctrico','Show de luces LED (equipo pixel, controladores, fuentes, instalación)','Rotulación, logos y gráficos','Mobiliario y pantallas (si lo manejas)','Flete','Montaje','Desmontaje','Otros'];
 $('tb').innerHTML=PART.map((p,i)=>`<tr><td>${p}</td>${[1,2,3].map(n=>`<td><input inputmode="decimal" aria-label="${p} V${n}" data-p="${i}" data-v="${n}" placeholder="0"></td>`).join('')}</tr>`).join('');
 const fmt=x=>'$'+x.toLocaleString('es-MX',{minimumFractionDigits:0,maximumFractionDigits:2});
 const num=s=>{const x=parseFloat(String(s).replace(/[^0-9.]/g,''));return isNaN(x)?0:x;};
