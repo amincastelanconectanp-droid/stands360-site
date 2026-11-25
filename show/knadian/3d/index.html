@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex,nofollow,noarchive">
+<title>Show LED 3D · KNADIAN</title>
+<style>
+html,body{margin:0;height:100%;background:#030407;color:#eef2fc;font-family:Inter,Arial,sans-serif;overflow:hidden}
+#c{position:fixed;inset:0;width:100%;height:100%;display:block}
+#ui{position:fixed;left:0;right:0;bottom:0;padding:12px max(14px,env(safe-area-inset-left,0px)) calc(14px + env(safe-area-inset-bottom,0px));display:flex;gap:8px;flex-wrap:wrap;justify-content:center;background:linear-gradient(0deg,rgba(0,0,0,.8),transparent)}
+#ui button{background:rgba(14,20,38,.88);color:#fff;border:1px solid #2c3a66;border-radius:99px;padding:9px 14px;font:600 13px Inter,Arial,sans-serif;cursor:pointer}
+#ui button.on{background:#c9a45a;border-color:#c9a45a;color:#111}
+#hd{position:fixed;left:16px;top:calc(12px + env(safe-area-inset-top,0px));max-width:70vw;pointer-events:none}
+#hd b{font-size:11px;letter-spacing:.2em;color:#c9a45a}#hd h1{margin:4px 0 2px;font-size:20px}#hd p{margin:0;color:#a3afcf;font-size:13px}
+#st{position:fixed;right:16px;top:calc(14px + env(safe-area-inset-top,0px));font-size:12px;color:#8aa0d0}
+#load{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;color:#8aa0d0;font-size:14px}
+body.rec #ui,body.rec #hd,body.rec #st{display:none}
+</style>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="../show.js"></script><script src="../ledshow.js"></script>
+</head><body>
+<canvas id="c"></canvas><div id="load">Cargando el stand…</div>
+<div id="hd"><b>STANDS 360 · SHOW DE LUCES LED</b><h1 id="tt">KNADIAN</h1><p id="sd">Arrastra para girar. Toca una escena.</p></div>
+<div id="st"></div>
+<div id="ui"></div>
+<script type="module">
+import * as THREE from 'three';
+import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
+const Q = new URLSearchParams(location.search), V = (Q.get('v') || 'V1').toUpperCase(), REC = Q.has('render');
+const NAMES = { V1: 'Versión 1 · Hoja de maple', V2: 'Versión 2 · Caja Knadian', V3: 'Versión 3 · La Curva' };
+document.getElementById('tt').textContent = 'KNADIAN · ' + NAMES[V];
+if (REC || Q.has('embed')) document.body.classList.add('rec');
+const [M, D] = await Promise.all([fetch('modelo_' + V + '.json').then(r => r.json()), fetch('leds_' + V + '.json').then(r => r.json())]);
+const L = S360LED, X = L.prep(D);
+const canvas = document.getElementById('c');
+const R = new THREE.WebGLRenderer({ canvas, antialias: true, preserveDrawingBuffer: REC });
+const W0 = REC ? +(Q.get('w') || 1280) : innerWidth, H0 = REC ? +(Q.get('h') || 720) : innerHeight;
+R.setPixelRatio(REC ? 1 : Math.min(1.5, devicePixelRatio)); R.setSize(W0, H0, false);
+R.outputColorSpace = THREE.SRGBColorSpace; R.toneMapping = THREE.ACESFilmicToneMapping; R.toneMappingExposure = 1.0;
+const S = new THREE.Scene(); S.background = new THREE.Color(0x030407); S.fog = new THREE.Fog(0x030407, 20, 46);
+const cam = new THREE.PerspectiveCamera(54, W0 / H0, 0.05, 200); cam.up.set(0, 0, 1);
+// ---------- stand (sin las luces, que van aparte) ----------
+const tl = new THREE.TextureLoader(), T_LOGO = tl.load('logo.png'); T_LOGO.colorSpace = THREE.SRGBColorSpace;
+const groups = new Map();
+for (const b of M.b) {
+  const k = b[b.length - 1]; if (k === 1 || k === 4) continue;
+  let g, c, a;
+  if (b[0] === 0) { const [, x, y, z, w, d, h, r, gg, bb, aa] = b; g = new THREE.BoxGeometry(w, d, h); g.translate(x + w / 2, y + d / 2, z + h / 2); c = [r, gg, bb]; a = aa; }
+  else if (b[0] === 1) { const [, pts, z, h, r, gg, bb, aa] = b; g = new THREE.ExtrudeGeometry(new THREE.Shape(pts.map(p => new THREE.Vector2(p[0], p[1]))), { depth: h, bevelEnabled: false, curveSegments: 1 }); g.translate(0, 0, z); c = [r, gg, bb]; a = aa; }
+  else { const [, pts, h, Xv, Yv, Zv, O, r, gg, bb, aa] = b; g = new THREE.ExtrudeGeometry(new THREE.Shape(pts.map(p => new THREE.Vector2(p[0], p[1]))), { depth: h, bevelEnabled: false, curveSegments: 1 });
+    g.applyMatrix4(new THREE.Matrix4().set(Xv[0], Yv[0], Zv[0], O[0], Xv[1], Yv[1], Zv[1], O[1], Xv[2], Yv[2], Zv[2], O[2], 0, 0, 0, 1)); c = [r, gg, bb]; a = aa; }
+  const key = c.join(',') + '|' + a + '|' + k; if (!groups.has(key)) groups.set(key, { c, a, k, gs: [] });
+  if (g.index) g = g.toNonIndexed(); for (const n of Object.keys(g.attributes)) if (!['position', 'normal'].includes(n)) g.deleteAttribute(n);
+  groups.get(key).gs.push(g);
+}
+for (const G of groups.values()) {
+  const col = new THREE.Color(G.c[0] / 255, G.c[1] / 255, G.c[2] / 255).convertSRGBToLinear(), glass = G.a < 255;
+  let m;
+  if (G.k === 2 || G.k === 3) m = new THREE.MeshStandardMaterial({ color: 0x050608, emissive: 0x2a4f90, emissiveIntensity: .5, roughness: .25 });
+  else m = new THREE.MeshStandardMaterial({ color: col, roughness: glass ? .1 : .62, metalness: .05, transparent: glass, opacity: glass ? .22 : 1, depthWrite: !glass, side: THREE.DoubleSide });
+  S.add(new THREE.Mesh(mergeGeometries(G.gs, false), m));
+}
+for (const Lg of M.logos) {
+  const w = Lg.ax === 1 ? Lg.mx[0] - Lg.mn[0] : Lg.mx[1] - Lg.mn[1], h = Lg.mx[2] - Lg.mn[2], ar = 480 / 150; let pw = w, ph = w / ar; if (ph > h * 1.15) { ph = h * 1.15; pw = ph * ar; }
+  const pm = new THREE.Mesh(new THREE.PlaneGeometry(pw, ph), new THREE.MeshStandardMaterial({ map: T_LOGO, transparent: true, emissive: 0xffffff, emissiveMap: T_LOGO, emissiveIntensity: .35, depthWrite: false }));
+  const cx = (Lg.mn[0] + Lg.mx[0]) / 2, cy = (Lg.mn[1] + Lg.mx[1]) / 2, cz = (Lg.mn[2] + Lg.mx[2]) / 2, nrm = Lg.ax === 1 ? new THREE.Vector3(0, Lg.s, 0) : new THREE.Vector3(Lg.s, 0, 0);
+  const face = Lg.ax === 1 ? (Lg.s > 0 ? Lg.mx[1] : Lg.mn[1]) : (Lg.s > 0 ? Lg.mx[0] : Lg.mn[0]);
+  pm.position.set(Lg.ax === 1 ? cx : face + Lg.s * .015, Lg.ax === 1 ? face + Lg.s * .015 : cy, cz); pm.up.set(0, 0, 1); pm.lookAt(pm.position.clone().add(nrm)); S.add(pm);
+}
+const floor = new THREE.Mesh(new THREE.PlaneGeometry(90, 90), new THREE.MeshStandardMaterial({ color: 0x1b1d22, roughness: .55, metalness: .1 }));
+floor.position.set(3, 6, -0.006); S.add(floor);
+for (const [x, y, w, d, h] of [[-14, -6, 7, 6, 3.2], [16, -14, 6, 5, 3], [-14, 10, 6, 7, 3.4], [18, 6, 6, 8, 2.8], [4, -18, 8, 5, 3.2]]) {
+  const m = new THREE.Mesh(new THREE.BoxGeometry(w, d, h), new THREE.MeshStandardMaterial({ color: 0x15171c, roughness: .8 })); m.position.set(x, y, h / 2); S.add(m); }
+S.add(new THREE.HemisphereLight(0x6070a0, 0x101010, .35));
+// ---------- luces LED: geometría con color por vértice ----------
+const NP = X.n, PC = new Float32Array(NP * 3);
+const ledG = [], vpi = [];
+const near = (f, p) => { let bi = f.p0, bd = 1e9; for (let i = f.p0; i < f.p1; i++) { const q = D.pix[i], dd = (q[0] - p.x) ** 2 + (q[1] - p.y) ** 2 + (q[2] - p.z) ** 2; if (dd < bd) { bd = dd; bi = i; } } return bi; };
+for (const e of D.geo) {
+  const f = D.fx[e[1]]; let g;
+  if (e[0] === 0) { let [, , pi, x, y, z, w, d, h] = e; const m = .028; const ww = Math.max(w, m), dd = Math.max(d, m), hh = Math.max(h, m);
+    g = new THREE.BoxGeometry(ww, dd, hh); g.translate(x + w / 2, y + d / 2, z + h / 2); g = g.toNonIndexed(); const n = g.attributes.position.count; for (let i = 0; i < n; i++) vpi.push(pi); }
+  else if (e[0] === 1) { const [, , , pts, z, h] = e; g = new THREE.ExtrudeGeometry(new THREE.Shape(pts.map(p => new THREE.Vector2(p[0], p[1]))), { depth: Math.max(h, .02), bevelEnabled: false, curveSegments: 1 }); g.translate(0, 0, z); if (g.index) g = g.toNonIndexed(); }
+  else { const [, , , pts, h, Xv, Yv, Zv, O] = e; g = new THREE.ExtrudeGeometry(new THREE.Shape(pts.map(p => new THREE.Vector2(p[0], p[1]))), { depth: h, bevelEnabled: false, curveSegments: 1 });
+    g.applyMatrix4(new THREE.Matrix4().set(Xv[0], Yv[0], Zv[0], O[0], Xv[1], Yv[1], Zv[1], O[1], Xv[2], Yv[2], Zv[2], O[2], 0, 0, 0, 1)); if (g.index) g = g.toNonIndexed(); }
+  if (e[0] !== 0) { const pa = g.attributes.position, v = new THREE.Vector3(); for (let i = 0; i < pa.count; i++) { v.fromBufferAttribute(pa, i); vpi.push(near(f, v)); } }
+  for (const n of Object.keys(g.attributes)) if (!['position', 'normal'].includes(n)) g.deleteAttribute(n);
+  ledG.push(g);
+}
+const LG = mergeGeometries(ledG, false), VC = new Float32Array(vpi.length * 3); LG.setAttribute('color', new THREE.BufferAttribute(VC, 3));
+const VPI = Uint32Array.from(vpi);
+S.add(new THREE.Mesh(LG, new THREE.MeshBasicMaterial({ vertexColors: true, toneMapped: false })));
+// módulos pixel de las cajas de luz (hoja de maple): puntos suaves
+const spr = (() => { const c = document.createElement('canvas'); c.width = c.height = 64; const g = c.getContext('2d'); const gr = g.createRadialGradient(32, 32, 0, 32, 32, 32); gr.addColorStop(0, 'rgba(255,255,255,1)'); gr.addColorStop(.35, 'rgba(255,255,255,.55)'); gr.addColorStop(1, 'rgba(255,255,255,0)'); g.fillStyle = gr; g.fillRect(0, 0, 64, 64); return new THREE.CanvasTexture(c); })();
+const boxIdx = []; D.fx.forEach(f => { if (f.k === 'caja' || f.k === 'downlight') for (let i = f.p0; i < f.p1; i++) boxIdx.push(i); });
+const PG = new THREE.BufferGeometry(), PP = new Float32Array(boxIdx.length * 3), PCOL = new Float32Array(boxIdx.length * 3);
+boxIdx.forEach((i, j) => { PP[j * 3] = D.pix[i][0]; PP[j * 3 + 1] = D.pix[i][1]; PP[j * 3 + 2] = D.pix[i][2] - (D.fx[D.pix[i][3]].k === 'downlight' ? .03 : 0); });
+PG.setAttribute('position', new THREE.BufferAttribute(PP, 3)); PG.setAttribute('color', new THREE.BufferAttribute(PCOL, 3));
+S.add(new THREE.Points(PG, new THREE.PointsMaterial({ size: .16, map: spr, vertexColors: true, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, toneMapped: false })));
+// luz que derraman las tiras sobre el stand: grupos de pixeles -> luces puntuales
+const act = []; for (let i = 0; i < NP; i++) act.push(i);
+const K = 14, cen = []; for (let j = 0; j < K; j++) { const p = D.pix[act[Math.floor((j + .5) / K * act.length)]]; cen.push([p[0], p[1], p[2]]); }
+const asg = new Int16Array(NP);
+for (let it = 0; it < 8; it++) { const s = cen.map(() => [0, 0, 0, 0]);
+  for (const i of act) { const p = D.pix[i]; let b = 0, bd = 1e9; cen.forEach((c, j) => { const d = (c[0] - p[0]) ** 2 + (c[1] - p[1]) ** 2 + (c[2] - p[2]) ** 2; if (d < bd) { bd = d; b = j; } }); asg[i] = b; s[b][0] += p[0]; s[b][1] += p[1]; s[b][2] += p[2]; s[b][3]++; }
+  s.forEach((q, j) => { if (q[3]) cen[j] = [q[0] / q[3], q[1] / q[3], q[2] / q[3]]; }); }
+const cnt = new Float32Array(K); for (const i of act) cnt[asg[i]]++;
+const PL = cen.map((c, j) => { const l = new THREE.PointLight(0xffffff, 0, 8, 1.6); l.position.set(c[0] + (c[0] < 3 ? .5 : -.5), c[1], c[2]); S.add(l); return l; });
+// ---------- composición y bloom ----------
+const comp = new EffectComposer(R); comp.setSize(W0, H0);
+comp.addPass(new RenderPass(S, cam));
+const bloom = new UnrealBloomPass(new THREE.Vector2(W0, H0), .72, .5, .5); comp.addPass(bloom); comp.addPass(new OutputPass());
+function paint(id, t, st) {
+  L.frame(X, id, t, st, PC);
+  for (let v = 0; v < VPI.length; v++) { const p = VPI[v] * 3; VC[v * 3] = PC[p] * 1.7 + .015; VC[v * 3 + 1] = PC[p + 1] * 1.7 + .015; VC[v * 3 + 2] = PC[p + 2] * 1.7 + .015; }
+  LG.attributes.color.needsUpdate = true;
+  boxIdx.forEach((i, j) => { PCOL[j * 3] = PC[i * 3] * 1.6; PCOL[j * 3 + 1] = PC[i * 3 + 1] * 1.6; PCOL[j * 3 + 2] = PC[i * 3 + 2] * 1.6; }); PG.attributes.color.needsUpdate = true;
+  const acc = cen.map(() => [0, 0, 0]); for (const i of act) { const a = acc[asg[i]]; a[0] += PC[i * 3]; a[1] += PC[i * 3 + 1]; a[2] += PC[i * 3 + 2]; }
+  PL.forEach((l, j) => { const n = cnt[j] || 1, a = acc[j], m = Math.max(a[0], a[1], a[2]) / n; l.color.setRGB(a[0] / n / (m || 1), a[1] / n / (m || 1), a[2] / n / (m || 1)); l.intensity = m * Math.min(6, 1.5 + Math.sqrt(n) * .6); });
+}
+// ---------- cámara del video ----------
+const C0 = [3, 6, 2.2];
+function camAt(t) {
+  const k = t / 60, e = k * k * (3 - 2 * k);
+  const az = (-100 + 100 * e) * Math.PI / 180, r = 14.5 - 2 * Math.sin(k * Math.PI), z = 2.1 + 3.6 * Math.max(0, (k - .55) / .45) ** 1.5 + .6 * Math.sin(k * Math.PI);
+  cam.position.set(C0[0] + r * Math.cos(az), C0[1] + r * Math.sin(az), z); cam.lookAt(C0[0], C0[1] - 1.2 + 1.2 * k, 2.85);
+}
+document.getElementById('load').remove();
+// ---------- modo video (se llama cuadro por cuadro) ----------
+if (REC) {
+  const OV = document.createElement('canvas'); OV.width = W0; OV.height = H0; const o = OV.getContext('2d');
+  window.renderAt = (t) => { camAt(t); paint('show', t, { bri: 1, speed: 1, color: 'calido' }); comp.render();
+    o.drawImage(R.domElement, 0, 0); over(o, t); return OV.toDataURL('image/jpeg', .9); };
+  const CAPS = [[8, 'Intro', 'La luz nace desde el piso'], [16, 'Encendido', 'Logos y aristas se prenden con cada golpe'], [32, 'Coro', 'Carrera de luz en rojo y blanco Knadian'], [40, 'Pausa', V === 'V2' ? 'Ondas rojas recorren todo el stand' : 'La hoja de maple late y manda ondas'], [52, 'Subida', 'Arcoíris y destellos que aceleran'], [60, 'Final', 'Golpe de luz y cierre con el logo']];
+  const LOGO = new Image(); LOGO.src = 'logo-s360.png';
+  function over(o, t) { const w = W0, h = H0, s = h / 720;
+    if (t < 5.5) { const a = Math.min(1, t / 1, (5.5 - t) / 1); o.globalAlpha = a; o.fillStyle = '#c9a45a'; o.font = `700 ${14 * s}px Arial`; o.textAlign = 'center'; o.letterSpacing = '4px'; o.fillText('STANDS 360 PRESENTA', w / 2, h * .4); o.letterSpacing = '0px';
+      o.fillStyle = '#fff'; o.font = `800 ${46 * s}px Arial`; o.fillText('Show de luces LED', w / 2, h * .4 + 58 * s); o.font = `500 ${20 * s}px Arial`; o.fillStyle = '#d8dceb'; o.fillText('KNADIAN Autopartes · ' + NAMES[V], w / 2, h * .4 + 96 * s); o.globalAlpha = 1; }
+    const c = CAPS.find(c => t < c[0]) || CAPS[CAPS.length - 1], st = c[0] - (CAPS[CAPS.indexOf(c) - 1] || [0])[0], tin = t - (c[0] - st);
+    if (t > 6 && t < 57) { const a = Math.min(1, tin / .6, (c[0] - t) / .6) * .95; o.globalAlpha = Math.max(0, a); o.textAlign = 'left'; o.fillStyle = 'rgba(0,0,0,.45)'; o.fillRect(36 * s, h - 104 * s, 4 * s, 62 * s);
+      o.fillStyle = '#c9a45a'; o.font = `700 ${13 * s}px Arial`; o.fillText(c[1].toUpperCase(), 52 * s, h - 82 * s); o.fillStyle = '#fff'; o.font = `600 ${22 * s}px Arial`; o.fillText(c[2], 52 * s, h - 52 * s); o.globalAlpha = 1; }
+    if (t > 56.5) { const a = Math.min(1, (t - 56.5) / 1.2); o.globalAlpha = a * .75; o.fillStyle = '#000'; o.fillRect(0, 0, w, h); o.globalAlpha = a; o.textAlign = 'center';
+      if (LOGO.complete && LOGO.naturalWidth) o.drawImage(LOGO, w / 2 - 50 * s, h / 2 - 90 * s, 100 * s, 100 * s);
+      o.fillStyle = '#fff'; o.font = `800 ${30 * s}px Arial`; o.fillText('STANDS 360', w / 2, h / 2 + 50 * s); o.fillStyle = '#c9a45a'; o.font = `500 ${16 * s}px Arial`; o.fillText('Nosotros desarrollamos el show de tu stand', w / 2, h / 2 + 82 * s); o.globalAlpha = 1; }
+  }
+  await new Promise(r => { LOGO.onload = LOGO.onerror = r; setTimeout(r, 3000); });
+  window.__ready = true;
+} else {
+  // ---------- modo interactivo ----------
+  const ctl = new OrbitControls(cam, canvas); ctl.target.set(3, 5.5, 2.2); ctl.enableDamping = true; ctl.maxDistance = 32; ctl.minDistance = 4; ctl.maxPolarAngle = Math.PI * .49; ctl.autoRotate = true; ctl.autoRotateSpeed = .35;
+  cam.position.set(3 + 15 * Math.cos(-1.0), 6 + 15 * Math.sin(-1.0), 3.6); ctl.update();
+  let ST = { scene: Q.get('s') || 'show', at: performance.now(), bri: 1, speed: 1, color: 'calido' };
+  const ui = document.getElementById('ui'), au = new Audio('show.mp3'); au.preload = 'auto'; let snd = false;
+  ui.innerHTML = L.SCENES.map(s => `<button data-s="${s.id}" type="button">${s.name}</button>`).join('') + '<button id="snd" type="button">Música: no</button>';
+  const mark = () => ui.querySelectorAll('[data-s]').forEach(b => b.classList.toggle('on', b.dataset.s === ST.scene));
+  const music = () => { if (snd && ST.scene === 'show') { au.currentTime = Math.max(0, (performance.now() - ST.at) / 1000); au.play().catch(() => {}); } else au.pause(); };
+  ui.onclick = e => { const b = e.target.closest('[data-s]'); if (b) { ST = { ...ST, scene: b.dataset.s, at: performance.now() }; mark(); music(); }
+    if (e.target.id === 'snd') { snd = !snd; e.target.textContent = 'Música: ' + (snd ? 'sí' : 'no'); music(); } };
+  mark();
+  addEventListener('resize', () => { R.setSize(innerWidth, innerHeight, false); comp.setSize(innerWidth, innerHeight); cam.aspect = innerWidth / innerHeight; cam.updateProjectionMatrix(); });
+  R.setSize(innerWidth, innerHeight, false); comp.setSize(innerWidth, innerHeight);
+  canvas.addEventListener('pointerdown', () => ctl.autoRotate = false);
+  // sigue al panel de control si la liga trae código (?k=)
+  if (Q.has('embed')) { addEventListener('message', e => { const p = e.data; if (p && p.scene) { ST = { ...p, at: performance.now() - (Date.now() - p.at) }; } }); parent.postMessage({ simReady: V }, '*'); }
+  else if (window.S360SHOW && S360SHOW.TOKEN) S360SHOW.connect('vista', p => { if (p && p.scene && (!p.v || p.v === V)) { ST = { ...p, at: performance.now() - (Date.now() - p.at) }; mark(); music(); } }, roles => { document.getElementById('st').textContent = 'En vivo con el panel'; }).catch(() => {});
+  (function loop() { let t = (performance.now() - ST.at) / 1000; const sc = L.SCENES.find(s => s.id === ST.scene) || L.SCENES[0];
+    if (!sc.loop && t > sc.dur) { ST = { ...ST, scene: 'ambiente', at: performance.now() }; mark(); t = 0; }
+    ctl.update(); paint(ST.scene, t, ST); comp.render(); requestAnimationFrame(loop); })();
+}
+</script></body></html>
