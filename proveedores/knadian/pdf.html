@@ -1,0 +1,18 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow,noarchive"><title>Documento</title>
+<style>body{margin:0;background:#2a2f3a;color:#e8ecf8;font:14px Inter,Arial,sans-serif}#st{padding:14px;text-align:center;color:#a3afcf}#pg{display:flex;flex-direction:column;align-items:center;gap:14px;padding:14px}canvas{max-width:100%;height:auto;background:#fff;box-shadow:0 6px 24px rgba(0,0,0,.4)}</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script></head><body>
+<div id="st">Cargando documento…</div><div id="pg"></div>
+<script>
+pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+const f=new URLSearchParams(location.search).get('f')||'';
+const st=document.getElementById('st'),pg=document.getElementById('pg');
+if(!/^p[123]\/[A-Za-z0-9_.]+\.pdf$/.test(f)){st.textContent='Documento no válido';}else{
+fetch(f).then(r=>r.arrayBuffer()).then(b=>pdfjsLib.getDocument({data:b}).promise).then(async d=>{
+ st.textContent=d.numPages+' páginas';
+ const W=Math.min(1600,pg.clientWidth-28)*(window.devicePixelRatio>1?1.5:1);
+ const cs=[];for(let i=1;i<=d.numPages;i++){const c=document.createElement('canvas');c.dataset.p=i;c.width=10;c.height=7;c.style.width='min(100%,1600px)';c.style.aspectRatio='1.414';pg.appendChild(c);cs.push(c);}
+ const done=new Set();
+ async function draw(c){const i=+c.dataset.p;if(done.has(i))return;done.add(i);const p=await d.getPage(i);const v0=p.getViewport({scale:1});const v=p.getViewport({scale:W/v0.width});c.width=v.width;c.height=v.height;c.style.aspectRatio=(v.width/v.height);await p.render({canvasContext:c.getContext('2d'),viewport:v}).promise;}
+ const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)draw(e.target)}),{rootMargin:'800px'});cs.forEach(c=>io.observe(c));
+}).catch(e=>{st.textContent='No se pudo abrir el documento.';});}
+</script></body></html>
