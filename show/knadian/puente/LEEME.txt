@@ -1,0 +1,35 @@
+PUENTE DEL SHOW DE LUCES LED · KNADIAN (STANDS 360)
+
+Qué hace
+Cuando alguien toca una escena en el panel del show (celular o iPad), este programa calcula
+el color de cada pixel del stand con el mismo motor del video 3D y lo manda a las tiras LED
+40 veces por segundo. Todo el stand se mueve exacto y al ritmo de la música.
+
+Archivos
+- puente-led.mjs ........ el programa
+- ledshow.js ............ el motor del show (mismo que en la web)
+- leds_V1/V2/V3.json .... posición de cada pixel de cada versión del stand
+- mapa_pixeles_V#.csv ... para el instalador: qué tira va en qué controlador, en qué salida y en qué orden
+
+Lo que se necesita en el stand
+1. Tiras LED pixel 24 V RGBW (control cada 10 cm), halo pixel en logos, módulos pixel en las cajas de luz
+   y downlights RGBW direccionables. Cantidades: ver la presentación de construcción, partida "Show de luces LED".
+2. Controladores WLED ESP32 de 4 salidas (los del mapa + 1 de repuesto), conectados al router del show.
+3. Fuentes 24 V 350 W con inyección de corriente cada 5 m.
+4. Router WiFi dedicado + internet (cable del recinto o módem 4G).
+5. Una mini PC o Raspberry Pi 5 conectada al router (corre este programa).
+
+Instalación (una sola vez)
+1. Instalar Node.js 20 o superior en la mini PC.
+2. En esta carpeta:  npm i @supabase/supabase-js@2.45.4
+3. Cablear las tiras siguiendo mapa_pixeles_V#.csv (controlador, salida y orden).
+4. En cada WLED: Config > LED Preferences > poner el número de pixeles de cada salida.
+   Config > Sync Interfaces > activar "Realtime" (DDP, puerto 4048). Anotar su IP.
+5. Correr:
+   SHOW_K=CODIGO VERSION=V1 WLED_IPS=ipC1,ipC2,ipC3,ipC4,ipC5 node puente-led.mjs
+   (CODIGO es el que trae la liga del show: ...?k=CODIGO. VERSION es la versión del stand que se construyó.)
+   Si se agrega un IP extra al final, ese controlador maneja la luz fija de salas y bodega.
+6. Prueba de cableado: PRUEBA=1 ... node puente-led.mjs  -> cada controlador se prende en blanco por turnos.
+
+En el panel aparece "LED del stand" en verde cuando el puente está conectado.
+La música del show se pone desde el iPad del panel (botón Música) a una bocina del stand.

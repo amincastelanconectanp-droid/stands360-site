@@ -1,0 +1,278 @@
+﻿Controlador,Salida,Primer pixel,Pixeles,Zona,Grupo,Pieza,Tipo,Metros
+C1,1,0,24,Aristas verticales,Forro D1,LED arista 0,Tira,2.44
+C1,1,24,24,Aristas verticales,Forro D1,LED arista 2,Tira,2.44
+C1,1,48,24,Aristas verticales,Forro D1,LED arista 1,Tira,2.44
+C1,1,72,24,Aristas verticales,Forro D1,LED arista 3,Tira,2.44
+C1,1,96,24,Aristas verticales,Forro B1,LED arista 0,Tira,2.44
+C1,1,120,24,Aristas verticales,Forro B1,LED arista 2,Tira,2.44
+C1,1,144,24,Aristas verticales,Forro B1,LED arista 1,Tira,2.44
+C1,1,168,24,Aristas verticales,Forro B1,LED arista 3,Tira,2.44
+C1,1,192,24,Aristas verticales,Forro C1,LED arista 0,Tira,2.44
+C1,2,216,24,Aristas verticales,Forro C1,LED arista 2,Tira,2.44
+C1,2,240,24,Aristas verticales,Forro C1,LED arista 1,Tira,2.44
+C1,2,264,24,Aristas verticales,Forro C1,LED arista 3,Tira,2.44
+C1,2,288,34,Aristas verticales,Paneles graficos franja negro dorada,LED arista esquina vertical,Tira,3.36
+C1,2,322,24,Aristas verticales,Forro D2,LED arista 0,Tira,2.44
+C1,2,346,24,Aristas verticales,Forro D2,LED arista 2,Tira,2.44
+C1,2,370,24,Aristas verticales,Forro D2,LED arista 1,Tira,2.44
+C1,2,394,24,Aristas verticales,Forro D2,LED arista 3,Tira,2.44
+C1,3,418,24,Aristas verticales,Forro E2,LED arista 0,Tira,2.44
+C1,3,442,24,Aristas verticales,Forro E2,LED arista 2,Tira,2.44
+C1,3,466,24,Aristas verticales,Forro E2,LED arista 1,Tira,2.44
+C1,3,490,24,Aristas verticales,Forro E2,LED arista 3,Tira,2.44
+C1,3,514,24,Aristas verticales,Torre BlueSide C2,LED arista C2 0,Tira,2.44
+C1,3,538,24,Aristas verticales,Torre BlueSide C2,LED arista C2 2,Tira,2.44
+C1,3,562,24,Aristas verticales,Torre BlueSide C2,LED arista C2 1,Tira,2.44
+C1,3,586,24,Aristas verticales,Torre BlueSide C2,LED arista C2 3,Tira,2.44
+C1,4,610,24,Aristas verticales,Forro D3,LED arista 0,Tira,2.44
+C1,4,634,24,Aristas verticales,Forro D3,LED arista 2,Tira,2.44
+C1,4,658,24,Aristas verticales,Forro D3,LED arista 1,Tira,2.44
+C1,4,682,24,Aristas verticales,Forro D3,LED arista 3,Tira,2.44
+C1,4,706,24,Aristas verticales,Forro B3,LED arista 0,Tira,2.44
+C1,4,730,24,Aristas verticales,Forro B3,LED arista 2,Tira,2.44
+C1,4,754,24,Aristas verticales,Forro B3,LED arista 1,Tira,2.44
+C2,1,0,24,Aristas verticales,Forro B3,LED arista 3,Tira,2.44
+C2,1,24,24,Aristas verticales,Forro C3,LED arista 0,Tira,2.44
+C2,1,48,24,Aristas verticales,Forro C3,LED arista 2,Tira,2.44
+C2,1,72,24,Aristas verticales,Forro C3,LED arista 1,Tira,2.44
+C2,1,96,24,Aristas verticales,Forro C3,LED arista 3,Tira,2.44
+C2,1,120,24,Aristas verticales,Forro D4,LED arista 0,Tira,2.44
+C2,1,144,24,Aristas verticales,Forro D4,LED arista 2,Tira,2.44
+C2,1,168,24,Aristas verticales,Forro D4,LED arista 1,Tira,2.44
+C2,1,192,24,Aristas verticales,Forro D4,LED arista 3,Tira,2.44
+C2,2,216,12,Escalera,Escalera 16 peraltes,LED nariz 01,Tira,1.16
+C2,2,228,12,Escalera,Escalera 16 peraltes,LED nariz 02,Tira,1.16
+C2,2,240,12,Escalera,Escalera 16 peraltes,LED nariz 03,Tira,1.16
+C2,2,252,12,Escalera,Escalera 16 peraltes,LED nariz 04,Tira,1.16
+C2,2,264,12,Escalera,Escalera 16 peraltes,LED nariz 05,Tira,1.16
+C2,2,276,12,Escalera,Escalera 16 peraltes,LED nariz 06,Tira,1.16
+C2,2,288,12,Escalera,Escalera 16 peraltes,LED nariz 07,Tira,1.16
+C2,2,300,12,Escalera,Escalera 16 peraltes,LED nariz 08,Tira,1.16
+C2,2,312,12,Escalera,Escalera 16 peraltes,LED nariz 09,Tira,1.16
+C2,2,324,12,Escalera,Escalera 16 peraltes,LED nariz 10,Tira,1.16
+C2,2,336,12,Escalera,Escalera 16 peraltes,LED nariz 11,Tira,1.16
+C2,2,348,12,Escalera,Escalera 16 peraltes,LED nariz 12,Tira,1.16
+C2,2,360,12,Escalera,Escalera 16 peraltes,LED nariz 13,Tira,1.16
+C2,2,372,12,Escalera,Escalera 16 peraltes,LED nariz 14,Tira,1.16
+C2,2,384,12,Escalera,Escalera 16 peraltes,LED nariz 15,Tira,1.16
+C2,2,396,7,Halo de logos,Logo frontal retroiluminado,Halo LED K asta,Halo,1.72
+C2,3,403,3,Halo de logos,Logo frontal retroiluminado,Halo LED K brazo,Halo,1.08
+C2,3,406,3,Halo de logos,Logo frontal retroiluminado,Halo LED K pierna,Halo,1.17
+C2,3,409,8,Halo de logos,Logo frontal retroiluminado,Halo LED maple,Halo,1.86
+C2,3,417,3,Halo de logos,Logo mostrador,Halo LED K asta,Halo,0.73
+C2,3,420,1,Halo de logos,Logo mostrador,Halo LED K brazo,Halo,0.5
+C2,3,421,1,Halo de logos,Logo mostrador,Halo LED K pierna,Halo,0.53
+C2,3,422,2,Halo de logos,Logo mostrador,Halo LED letra 0 n,Halo,0.72
+C2,3,424,8,Halo de logos,Logo mostrador,Halo LED maple,Halo,0.8
+C2,3,432,5,Halo de logos,Logo frontal retroiluminado,Halo LED letra 0 n,Halo,1.69
+C2,3,437,5,Halo de logos,Logo frontal retroiluminado,Halo LED letra 1 a,Halo,1.69
+C2,3,442,5,Halo de logos,Logo frontal retroiluminado,Halo LED letra 2 d,Halo,1.69
+C2,3,447,15,Halo de logos,Logo frontal retroiluminado,Halo LED Autopartes,Halo,3.4
+C2,3,462,5,Halo de logos,Logo frontal retroiluminado,Halo LED letra 3 i,Halo,1.69
+C2,3,467,5,Halo de logos,Logo frontal retroiluminado,Halo LED letra 4 a,Halo,1.69
+C2,3,472,5,Halo de logos,Logo frontal retroiluminado,Halo LED letra 5 n,Halo,1.69
+C2,3,477,5,Halo de logos,Logo lateral derecho,Halo LED K asta,Halo,1.27
+C2,3,482,2,Halo de logos,Logo lateral derecho,Halo LED K brazo,Halo,0.82
+C2,3,484,2,Halo de logos,Logo lateral derecho,Halo LED K pierna,Halo,0.88
+C2,3,486,8,Halo de logos,Logo lateral derecho,Halo LED maple,Halo,1.38
+C2,3,494,6,Halo de logos,Logo mostrador,Halo LED Autopartes,Halo,1.34
+C2,3,500,2,Halo de logos,Logo mostrador,Halo LED letra 1 a,Halo,0.72
+C2,3,502,2,Halo de logos,Logo mostrador,Halo LED letra 2 d,Halo,0.72
+C2,3,504,2,Halo de logos,Logo mostrador,Halo LED letra 3 i,Halo,0.72
+C2,3,506,2,Halo de logos,Logo mostrador,Halo LED letra 4 a,Halo,0.72
+C2,3,508,2,Halo de logos,Logo mostrador,Halo LED letra 5 n,Halo,0.72
+C2,3,510,2,Halo de logos,Logo barra cafe,Halo LED K asta,Halo,0.65
+C2,3,512,1,Halo de logos,Logo barra cafe,Halo LED K pierna,Halo,0.48
+C2,3,513,8,Halo de logos,Logo barra cafe,Halo LED maple,Halo,0.71
+C2,3,521,1,Halo de logos,Logo barra cafe,Halo LED K brazo,Halo,0.45
+C2,3,522,2,Halo de logos,Logo barra cafe,Halo LED letra 0 n,Halo,0.64
+C2,3,524,2,Halo de logos,Logo barra cafe,Halo LED letra 1 a,Halo,0.64
+C2,3,526,2,Halo de logos,Logo barra cafe,Halo LED letra 2 d,Halo,0.64
+C2,3,528,5,Halo de logos,Logo barra cafe,Halo LED Autopartes,Halo,1.18
+C2,3,533,2,Halo de logos,Logo barra cafe,Halo LED letra 3 i,Halo,0.64
+C2,3,535,2,Halo de logos,Logo barra cafe,Halo LED letra 4 a,Halo,0.64
+C2,3,537,2,Halo de logos,Logo barra cafe,Halo LED letra 5 n,Halo,0.64
+C2,3,539,11,Halo de logos,Logo lateral derecho,Halo LED Autopartes,Halo,2.47
+C2,3,550,3,Halo de logos,Logo lateral derecho,Halo LED letra 0 n,Halo,1.25
+C2,3,553,3,Halo de logos,Logo lateral derecho,Halo LED letra 1 a,Halo,1.25
+C2,3,556,3,Halo de logos,Logo lateral derecho,Halo LED letra 2 d,Halo,1.25
+C2,3,559,3,Halo de logos,Logo lateral derecho,Halo LED letra 3 i,Halo,1.25
+C2,3,562,3,Halo de logos,Logo lateral derecho,Halo LED letra 4 a,Halo,1.25
+C2,3,565,3,Halo de logos,Logo lateral derecho,Halo LED letra 5 n,Halo,1.25
+C2,3,568,2,Halo de logos,Logo barra cafe pasillo,Halo LED K asta,Halo,0.57
+C2,3,570,1,Halo de logos,Logo barra cafe pasillo,Halo LED K brazo,Halo,0.4
+C2,3,571,1,Halo de logos,Logo barra cafe pasillo,Halo LED K pierna,Halo,0.42
+C2,3,572,4,Halo de logos,Logo barra cafe pasillo,Halo LED Autopartes,Halo,1.01
+C2,3,576,1,Halo de logos,Logo barra cafe pasillo,Halo LED letra 0 n,Halo,0.56
+C2,3,577,1,Halo de logos,Logo barra cafe pasillo,Halo LED letra 1 a,Halo,0.56
+C2,3,578,1,Halo de logos,Logo barra cafe pasillo,Halo LED letra 2 d,Halo,0.56
+C2,3,579,1,Halo de logos,Logo barra cafe pasillo,Halo LED letra 3 i,Halo,0.56
+C2,3,580,1,Halo de logos,Logo barra cafe pasillo,Halo LED letra 4 a,Halo,0.56
+C2,3,581,1,Halo de logos,Logo barra cafe pasillo,Halo LED letra 5 n,Halo,0.56
+C2,3,582,8,Halo de logos,Logo barra cafe pasillo,Halo LED maple,Halo,0.63
+C2,3,590,3,Halo de logos,Logo fondo llegada,Halo LED K asta,Halo,0.7
+C2,3,593,1,Halo de logos,Logo fondo llegada,Halo LED K pierna,Halo,0.51
+C2,3,594,8,Halo de logos,Logo fondo llegada,Halo LED maple,Halo,0.77
+C2,4,602,1,Halo de logos,Logo fondo llegada,Halo LED K brazo,Halo,0.48
+C2,4,603,2,Halo de logos,Logo fondo llegada,Halo LED letra 0 n,Halo,0.69
+C2,4,605,2,Halo de logos,Logo fondo llegada,Halo LED letra 1 a,Halo,0.69
+C2,4,607,2,Halo de logos,Logo fondo llegada,Halo LED letra 2 d,Halo,0.69
+C2,4,609,6,Halo de logos,Logo fondo llegada,Halo LED Autopartes,Halo,1.29
+C2,4,615,2,Halo de logos,Logo fondo llegada,Halo LED letra 3 i,Halo,0.69
+C2,4,617,2,Halo de logos,Logo fondo llegada,Halo LED letra 4 a,Halo,0.69
+C2,4,619,2,Halo de logos,Logo fondo llegada,Halo LED letra 5 n,Halo,0.69
+C2,4,621,12,Nichos y cajas de luz,Nichos muro izq recepcion,Caja luz opal categoria 0,Caja de luz,1.17
+C2,4,633,11,Nichos y cajas de luz,Nichos muro izq recepcion,Caja luz opal categoria 1,Caja de luz,1.12
+C2,4,644,24,Nichos y cajas de luz,Nichos muro izq recepcion,LED bajo remate,Tira,2.41
+C2,4,668,12,Nichos y cajas de luz,Nichos muro izq recepcion,LED entrepano 0 1,Tira,1.17
+C2,4,680,12,Nichos y cajas de luz,Nichos muro izq recepcion,LED entrepano 0 2,Tira,1.17
+C2,4,692,12,Nichos y cajas de luz,Nichos muro izq recepcion,LED entrepano 0 3,Tira,1.17
+C2,4,704,11,Nichos y cajas de luz,Nichos muro izq recepcion,LED entrepano 1 1,Tira,1.12
+C2,4,715,11,Nichos y cajas de luz,Nichos muro izq recepcion,LED entrepano 1 2,Tira,1.12
+C2,4,726,11,Nichos y cajas de luz,Nichos muro izq recepcion,LED entrepano 1 3,Tira,1.12
+C2,4,737,24,Nichos y cajas de luz,Nichos muro izq recepcion,LED zoclo nicho,Tira,2.41
+C2,4,761,18,Nichos y cajas de luz,Nichos muro izq recepcion,LED arista divisor 0,Tira,1.76
+C2,4,779,18,Nichos y cajas de luz,Nichos muro izq recepcion,LED arista divisor 1,Tira,1.76
+C3,1,0,18,Nichos y cajas de luz,Nichos muro izq recepcion,LED arista divisor 2,Tira,1.76
+C3,1,18,24,Nichos y cajas de luz,Columna vitrina B2,LED arista B2 0,Tira,2.44
+C3,1,42,24,Nichos y cajas de luz,Columna vitrina B2,LED arista B2 2,Tira,2.44
+C3,1,66,4,Nichos y cajas de luz,Columna vitrina B2,LED repisa S,Tira,0.41
+C3,1,70,4,Nichos y cajas de luz,Columna vitrina B2,LED repisa N,Tira,0.41
+C3,1,74,24,Nichos y cajas de luz,Columna vitrina B2,LED arista B2 1,Tira,2.44
+C3,1,98,24,Nichos y cajas de luz,Columna vitrina B2,LED arista B2 3,Tira,2.44
+C3,1,122,10,Nichos y cajas de luz,Area Demostraciones,Mesa taller luz opal,Caja de luz,1.0
+C3,1,132,6,Nichos y cajas de luz,Vitrina heroe 50x50,Base luz vitrina,Caja de luz,0.6
+C3,1,138,45,Nichos y cajas de luz,Muro Stock nichos,LED arista divisor ms 0,Tira,4.5
+C3,1,183,28,Nichos y cajas de luz,Muro Stock nichos,Caja luz script muro stock,Caja de luz,2.75
+C3,2,211,28,Nichos y cajas de luz,Muro Stock nichos,LED bajo caja script,Tira,2.75
+C3,2,239,9,Nichos y cajas de luz,Muro Stock nichos,LED entrepano ms 0 1,Tira,0.88
+C3,2,248,9,Nichos y cajas de luz,Muro Stock nichos,LED entrepano ms 0 2,Tira,0.88
+C3,2,257,9,Nichos y cajas de luz,Muro Stock nichos,LED entrepano ms 0 3,Tira,0.88
+C3,2,266,9,Nichos y cajas de luz,Muro Stock nichos,LED entrepano ms 0 4,Tira,0.88
+C3,2,275,9,Nichos y cajas de luz,Muro Stock nichos,LED entrepano ms 0 5,Tira,0.88
+C3,2,284,9,Nichos y cajas de luz,Muro Stock nichos,LED entrepano ms 0 6,Tira,0.88
+C3,2,293,9,Nichos y cajas de luz,Muro Stock nichos,LED entrepano ms 0 7,Tira,0.88
+C3,2,302,9,Nichos y cajas de luz,Muro Stock nichos,LED entrepano ms 0 8,Tira,0.88
+C3,2,311,9,Nichos y cajas de luz,Muro Stock nichos,LED entrepano ms 0 9,Tira,0.88
+C3,2,320,9,Nichos y cajas de luz,Muro Stock nichos,LED entrepano ms 0 10,Tira,0.88
+C3,2,329,45,Nichos y cajas de luz,Muro Stock nichos,LED arista divisor ms 1,Tira,4.5
+C3,2,374,9,Nichos y cajas de luz,Muro Stock nichos,LED entrepano ms 1 1,Tira,0.88
+C3,2,383,9,Nichos y cajas de luz,Muro Stock nichos,LED entrepano ms 1 2,Tira,0.88
+C3,2,392,9,Nichos y cajas de luz,Muro Stock nichos,LED entrepano ms 1 3,Tira,0.88
+C3,3,401,9,Nichos y cajas de luz,Muro Stock nichos,LED entrepano ms 1 4,Tira,0.88
+C3,3,410,9,Nichos y cajas de luz,Muro Stock nichos,LED entrepano ms 1 5,Tira,0.88
+C3,3,419,9,Nichos y cajas de luz,Muro Stock nichos,LED entrepano ms 1 6,Tira,0.88
+C3,3,428,9,Nichos y cajas de luz,Muro Stock nichos,LED entrepano ms 1 7,Tira,0.88
+C3,3,437,9,Nichos y cajas de luz,Muro Stock nichos,LED entrepano ms 1 8,Tira,0.88
+C3,3,446,9,Nichos y cajas de luz,Muro Stock nichos,LED entrepano ms 1 9,Tira,0.88
+C3,3,455,9,Nichos y cajas de luz,Muro Stock nichos,LED entrepano ms 1 10,Tira,0.88
+C3,3,464,45,Nichos y cajas de luz,Muro Stock nichos,LED arista divisor ms 2,Tira,4.5
+C3,3,509,8,Nichos y cajas de luz,Muro Stock nichos,LED entrepano ms 2 1,Tira,0.84
+C3,3,517,8,Nichos y cajas de luz,Muro Stock nichos,LED entrepano ms 2 2,Tira,0.84
+C3,3,525,8,Nichos y cajas de luz,Muro Stock nichos,LED entrepano ms 2 3,Tira,0.84
+C3,3,533,8,Nichos y cajas de luz,Muro Stock nichos,LED entrepano ms 2 4,Tira,0.84
+C3,3,541,8,Nichos y cajas de luz,Muro Stock nichos,LED entrepano ms 2 5,Tira,0.84
+C3,3,549,8,Nichos y cajas de luz,Muro Stock nichos,LED entrepano ms 2 6,Tira,0.84
+C3,3,557,8,Nichos y cajas de luz,Muro Stock nichos,LED entrepano ms 2 7,Tira,0.84
+C3,3,565,8,Nichos y cajas de luz,Muro Stock nichos,LED entrepano ms 2 8,Tira,0.84
+C3,3,573,8,Nichos y cajas de luz,Muro Stock nichos,LED entrepano ms 2 9,Tira,0.84
+C3,3,581,8,Nichos y cajas de luz,Muro Stock nichos,LED entrepano ms 2 10,Tira,0.84
+C3,3,589,45,Nichos y cajas de luz,Muro Stock nichos,LED arista divisor ms 3,Tira,4.5
+C3,4,634,58,Nichos y cajas de luz,Muro Stock nichos,LED arista retorno,Tira,5.8
+C3,4,692,60,"Perímetro (zoclos, cantos, faldón)",Stand V2P Caja Knadian,LED zoclo frente,Tira,6.0
+C4,1,0,60,"Perímetro (zoclos, cantos, faldón)",Paneles graficos franja negro dorada,LED remate frente,Tira,5.99
+C4,1,60,60,"Perímetro (zoclos, cantos, faldón)",Paneles graficos franja negro dorada,LED canto franja frente,Tira,5.99
+C4,1,120,59,"Perímetro (zoclos, cantos, faldón)",Faldon y plafon,LED canto faldon frente,Tira,5.93
+C4,1,179,24,"Perímetro (zoclos, cantos, faldón)",Area Recepcion mostrador,LED zoclo mostrador,Tira,2.4
+C4,2,203,24,"Perímetro (zoclos, cantos, faldón)",Area Recepcion mostrador,LED canto cubierta mostrador,Tira,2.4
+C4,2,227,64,"Perímetro (zoclos, cantos, faldón)",Faldon y plafon,LED canto faldon derecho,Tira,6.39
+C4,2,291,64,"Perímetro (zoclos, cantos, faldón)",Paneles graficos franja negro dorada,LED remate derecha,Tira,6.45
+C4,2,355,64,"Perímetro (zoclos, cantos, faldón)",Paneles graficos franja negro dorada,LED canto franja derecha,Tira,6.45
+C4,3,419,120,"Perímetro (zoclos, cantos, faldón)",Stand V2P Caja Knadian,LED zoclo derecha,Tira,11.98
+C4,3,539,6,"Perímetro (zoclos, cantos, faldón)",Area Barra cafe,LED zoclo barra lado poniente,Tira,0.6
+C4,3,545,19,"Perímetro (zoclos, cantos, faldón)",Area Barra cafe,LED bajo cubierta barra,Tira,1.88
+C4,3,564,18,"Perímetro (zoclos, cantos, faldón)",Area Barra cafe,LED zoclo barra frente,Tira,1.8
+C4,3,582,15,"Perímetro (zoclos, cantos, faldón)",Area Barra cafe,LED zoclo barra lado oriente,Tira,1.5
+C4,3,597,16,"Perímetro (zoclos, cantos, faldón)",Area Barra cafe,LED bajo cubierta regreso,Tira,1.58
+C4,4,613,22,"Perímetro (zoclos, cantos, faldón)",Area Demostraciones,LED canto barra producto,Tira,2.2
+C4,4,635,27,"Perímetro (zoclos, cantos, faldón)",Barandal mezzanine negro,LED bajo pasamanos atrio,Tira,2.69
+C4,4,662,50,"Perímetro (zoclos, cantos, faldón)",Faldon y plafon,LED canto faldon mirador,Tira,5.0
+C4,4,712,28,"Perímetro (zoclos, cantos, faldón)",Faldon y plafon,LED canto faldon atrio,Tira,2.83
+C4,4,740,8,"Perímetro (zoclos, cantos, faldón)",Kiosco touch Knadian Arcade,LED canto cabezal,Tira,0.75
+C4,4,748,6,"Perímetro (zoclos, cantos, faldón)",Area Barra cafe,LED zoclo regreso norte,Tira,0.6
+C4,4,754,10,"Perímetro (zoclos, cantos, faldón)",Area Demostraciones,LED zoclo mesa taller,Tira,1.0
+C4,4,764,1,Downlights de plafón,Faldon y plafon,LED downlight PB 00,Downlight,
+C4,4,765,1,Downlights de plafón,Faldon y plafon,LED downlight PB 10,Downlight,
+C4,4,766,1,Downlights de plafón,Faldon y plafon,LED downlight PB 20,Downlight,
+C4,4,767,1,Downlights de plafón,Faldon y plafon,LED downlight PB 30,Downlight,
+C4,4,768,1,Downlights de plafón,Faldon y plafon,LED downlight PB 40,Downlight,
+C4,4,769,1,Downlights de plafón,Faldon y plafon,LED downlight PB 50,Downlight,
+C4,4,770,1,Downlights de plafón,Faldon y plafon,LED downlight PB 01,Downlight,
+C4,4,771,1,Downlights de plafón,Faldon y plafon,LED downlight PB 02,Downlight,
+C4,4,772,1,Downlights de plafón,Faldon y plafon,LED downlight PB 03,Downlight,
+C4,4,773,1,Downlights de plafón,Faldon y plafon,LED downlight PB 04,Downlight,
+C4,4,774,1,Downlights de plafón,Faldon y plafon,LED downlight PB 11,Downlight,
+C4,4,775,1,Downlights de plafón,Faldon y plafon,LED downlight PB 12,Downlight,
+C4,4,776,1,Downlights de plafón,Faldon y plafon,LED downlight PB 14,Downlight,
+C4,4,777,1,Downlights de plafón,Faldon y plafon,LED downlight PB 21,Downlight,
+C4,4,778,1,Downlights de plafón,Faldon y plafon,LED downlight PB 22,Downlight,
+C4,4,779,1,Downlights de plafón,Faldon y plafon,LED downlight PB 23,Downlight,
+C4,4,780,1,Downlights de plafón,Faldon y plafon,LED downlight PB 24,Downlight,
+C4,4,781,1,Downlights de plafón,Faldon y plafon,LED downlight PB 31,Downlight,
+C4,4,782,1,Downlights de plafón,Faldon y plafon,LED downlight PB 32,Downlight,
+C4,4,783,1,Downlights de plafón,Faldon y plafon,LED downlight PB 33,Downlight,
+C4,4,784,1,Downlights de plafón,Faldon y plafon,LED downlight PB 34,Downlight,
+C4,4,785,1,Downlights de plafón,Faldon y plafon,LED downlight PB 41,Downlight,
+C4,4,786,1,Downlights de plafón,Faldon y plafon,LED downlight PB 42,Downlight,
+C4,4,787,1,Downlights de plafón,Faldon y plafon,LED downlight PB 44,Downlight,
+C4,4,788,1,Downlights de plafón,Faldon y plafon,LED downlight PB 51,Downlight,
+C4,4,789,1,Downlights de plafón,Faldon y plafon,LED downlight PB 52,Downlight,
+C4,4,790,1,Downlights de plafón,Faldon y plafon,LED downlight PB 54,Downlight,
+C4,4,791,1,Downlights de plafón,Faldon y plafon,LED downlight PB 05,Downlight,
+C4,4,792,1,Downlights de plafón,Faldon y plafon,LED downlight PB 06,Downlight,
+C4,4,793,1,Downlights de plafón,Faldon y plafon,LED downlight PB 15,Downlight,
+C4,4,794,1,Downlights de plafón,Faldon y plafon,LED downlight ala 0,Downlight,
+C4,4,795,1,Downlights de plafón,Faldon y plafon,LED downlight PB 25,Downlight,
+C4,4,796,1,Downlights de plafón,Faldon y plafon,LED downlight PB 26,Downlight,
+C4,4,797,1,Downlights de plafón,Faldon y plafon,LED downlight PB 35,Downlight,
+C4,4,798,1,Downlights de plafón,Faldon y plafon,LED downlight PB 36,Downlight,
+C4,4,799,1,Downlights de plafón,Faldon y plafon,LED downlight PB 45,Downlight,
+C5,1,0,1,Downlights de plafón,Faldon y plafon,LED downlight PB 46,Downlight,
+C5,1,1,1,Downlights de plafón,Faldon y plafon,LED downlight PB 55,Downlight,
+C5,1,2,1,Downlights de plafón,Faldon y plafon,LED downlight ala 2,Downlight,
+C5,1,3,1,Downlights de plafón,Faldon y plafon,LED downlight ala 1,Downlight,
+C5,1,4,1,Downlights de plafón,Faldon y plafon,LED downlight ala 3,Downlight,
+C5,1,5,1,Downlights de plafón,Faldon y plafon,LED downlight ala 4,Downlight,
+Fija,,,1,Bodega (luz fija),Area Bodega almacen,LED downlight bodega 1,Downlight,
+Fija,,,2,Salas (luz fija),Logo sala 1,Halo LED K asta,Halo,0.51
+Fija,,,1,Salas (luz fija),Logo sala 1,Halo LED K brazo,Halo,0.37
+Fija,,,1,Salas (luz fija),Logo sala 1,Halo LED K pierna,Halo,0.39
+Fija,,,4,Salas (luz fija),Logo sala 1,Halo LED Autopartes,Halo,0.89
+Fija,,,1,Salas (luz fija),Logo sala 1,Halo LED letra 0 n,Halo,0.51
+Fija,,,1,Salas (luz fija),Logo sala 1,Halo LED letra 1 a,Halo,0.51
+Fija,,,1,Salas (luz fija),Logo sala 1,Halo LED letra 2 d,Halo,0.51
+Fija,,,1,Salas (luz fija),Logo sala 1,Halo LED letra 3 i,Halo,0.51
+Fija,,,1,Salas (luz fija),Logo sala 1,Halo LED letra 4 a,Halo,0.51
+Fija,,,1,Salas (luz fija),Logo sala 1,Halo LED letra 5 n,Halo,0.51
+Fija,,,5,Salas (luz fija),Logo sala 1,Halo LED maple,Halo,0.57
+Fija,,,1,Salas (luz fija),Area Sala de juntas 1,LED downlight sala 00,Downlight,
+Fija,,,1,Salas (luz fija),Area Sala de juntas 1,LED downlight sala 01,Downlight,
+Fija,,,1,Salas (luz fija),Area Sala de juntas 1,LED downlight sala 10,Downlight,
+Fija,,,1,Salas (luz fija),Area Sala de juntas 1,LED downlight sala 11,Downlight,
+Fija,,,14,Salas (luz fija),Area Sala de juntas 1,LED lineal sobre mesa,Tira,1.4
+Fija,,,2,Salas (luz fija),Logo sala 2,Halo LED K asta,Halo,0.51
+Fija,,,1,Salas (luz fija),Logo sala 2,Halo LED K brazo,Halo,0.37
+Fija,,,1,Salas (luz fija),Logo sala 2,Halo LED K pierna,Halo,0.39
+Fija,,,4,Salas (luz fija),Logo sala 2,Halo LED Autopartes,Halo,0.89
+Fija,,,1,Salas (luz fija),Logo sala 2,Halo LED letra 0 n,Halo,0.51
+Fija,,,1,Salas (luz fija),Logo sala 2,Halo LED letra 1 a,Halo,0.51
+Fija,,,1,Salas (luz fija),Logo sala 2,Halo LED letra 2 d,Halo,0.51
+Fija,,,1,Salas (luz fija),Logo sala 2,Halo LED letra 3 i,Halo,0.51
+Fija,,,1,Salas (luz fija),Logo sala 2,Halo LED letra 4 a,Halo,0.51
+Fija,,,1,Salas (luz fija),Logo sala 2,Halo LED letra 5 n,Halo,0.51
+Fija,,,5,Salas (luz fija),Logo sala 2,Halo LED maple,Halo,0.57
+Fija,,,1,Salas (luz fija),Area Sala de juntas 2,LED downlight sala 00,Downlight,
+Fija,,,1,Salas (luz fija),Area Sala de juntas 2,LED downlight sala 01,Downlight,
+Fija,,,1,Salas (luz fija),Area Sala de juntas 2,LED downlight sala 10,Downlight,
+Fija,,,1,Salas (luz fija),Area Sala de juntas 2,LED downlight sala 11,Downlight,
+Fija,,,14,Salas (luz fija),Area Sala de juntas 2,LED lineal sobre mesa,Tira,1.4
